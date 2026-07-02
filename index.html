@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>평일새벽설교 — 시편 14·15·16편 | 수영로교회 이승목 목사</title>
+<title>시편 새벽설교 — 이미 받은 자 시리즈</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,582 +12,897 @@
 
   body {
     background: #faf8f3;
-    color: #2c2c2c;
-    font-family: 'Noto Serif KR', 'Apple SD Gothic Neo', serif;
-    font-size: 1.05rem;
-    line-height: 1.9;
+    font-family: 'Noto Serif KR', Georgia, serif;
+    color: #2d2a24;
+    line-height: 1.85;
+    font-size: 17px;
   }
 
-  header {
-    background: #2c2c2c;
+  .page-header {
+    background: #2d2a24;
     color: #faf8f3;
+    padding: 56px 32px 48px;
     text-align: center;
-    padding: 2.5rem 1rem 2rem;
   }
-  header .series-label {
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    color: #c8b89a;
-    margin-bottom: 0.5rem;
+  .page-header .series-label {
+    font-size: 12px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
+    color: #c8b99a;
+    margin-bottom: 16px;
   }
-  header h1 {
-    font-size: 1.45rem;
-    font-weight: 600;
-    line-height: 1.4;
+  .page-header h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 14px;
   }
-  header .subtitle {
-    margin-top: 0.6rem;
-    font-size: 0.85rem;
-    color: #aaa;
+  .page-header .subtitle {
+    font-size: 15px;
+    color: #b0a898;
     font-weight: 300;
   }
-
-  /* Tabs */
-  .tabs-nav {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    background: #f0ece3;
-    border-bottom: 2px solid #d4c9b0;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  .tab-btn {
-    padding: 0.85rem 1.6rem;
-    border: none;
-    background: transparent;
-    font-family: inherit;
-    font-size: 0.9rem;
-    color: #777;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
-    transition: color 0.2s, border-color 0.2s;
-    white-space: nowrap;
-  }
-  .tab-btn:hover { color: #444; }
-  .tab-btn.active {
-    color: #8b1a1a;
-    border-bottom-color: #8b1a1a;
-    font-weight: 600;
+  .page-header .preacher {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #c8b99a;
+    letter-spacing: 0.05em;
   }
 
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-
-  /* Content */
-  .sermon-wrap {
-    max-width: 760px;
+  .container {
+    max-width: 820px;
     margin: 0 auto;
-    padding: 2.5rem 1.2rem 4rem;
+    padding: 0 20px;
   }
 
-  .sermon-meta {
-    border-left: 4px solid #c8b89a;
-    padding: 1rem 1.2rem;
-    background: #f5f1e8;
-    margin-bottom: 2.2rem;
-    border-radius: 0 4px 4px 0;
+  .intro-block {
+    background: #f0ece3;
+    border-left: 4px solid #8b1a1a;
+    padding: 28px 32px;
+    margin: 40px 0 32px;
+    border-radius: 0 6px 6px 0;
   }
-  .sermon-meta .date { font-size: 0.82rem; color: #888; margin-bottom: 0.3rem; }
-  .sermon-meta .scripture { font-size: 1rem; color: #555; margin-bottom: 0.5rem; }
-  .sermon-meta .thesis {
-    font-size: 1.05rem;
-    color: #2c2c2c;
-    font-weight: 600;
+  .intro-block p {
+    font-size: 15px;
+    color: #4a4540;
+    margin-bottom: 8px;
+  }
+  .intro-block p:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8b7355;
+    margin: 48px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0dbd0;
+  }
+
+  /* SERMON ACCORDION */
+  .sermon-block {
+    border: 1px solid #e0dbd0;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .sermon-block:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .sermon-block summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: block;
+    position: relative;
+  }
+  .sermon-block summary::-webkit-details-marker { display: none; }
+  .sermon-block summary::after {
+    content: '+';
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: #8b7355;
+    font-weight: 300;
+    transition: transform 0.25s;
+  }
+  .sermon-block[open] summary::after {
+    content: '−';
+  }
+  .sermon-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .psalm-num {
+    background: #8b1a1a;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+  .psalm-date {
+    font-size: 12px;
+    color: #9c9080;
+  }
+  .psalm-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #2d2a24;
+  }
+  .psalm-thesis {
+    font-size: 14px;
+    color: #5c5248;
+    margin-bottom: 6px;
     line-height: 1.6;
   }
-  .sermon-meta .keywords {
-    margin-top: 0.6rem;
-    font-size: 0.8rem;
-    color: #888;
+  .psalm-words {
+    font-size: 13px;
+    color: #8b7355;
   }
-
-  h1.sermon-title {
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    line-height: 1.4;
-    margin-bottom: 0.4rem;
-  }
-  h2 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #3a2a1a;
-    margin: 2.2rem 0 0.8rem;
-    padding-bottom: 0.3rem;
-    border-bottom: 1px solid #d4c9b0;
-  }
-  h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #5a3a2a;
-    margin: 1.6rem 0 0.6rem;
-  }
-
-  p { margin-bottom: 1.1rem; }
-  p:last-child { margin-bottom: 0; }
-
   .heb {
     color: #8b1a1a;
-    font-style: italic;
+    font-weight: 700;
+    font-size: 1.05em;
+  }
+
+  .sermon-body {
+    padding: 0 28px 28px;
+    border-top: 1px solid #f0ece3;
+  }
+
+  .sermon-section {
+    margin-top: 24px;
+  }
+  .sermon-section h3 {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: #8b1a1a;
+    margin-bottom: 12px;
+    text-transform: uppercase;
     font-weight: 600;
   }
+  .sermon-section p {
+    margin-bottom: 14px;
+    color: #3a3530;
+    font-size: 16px;
+  }
+  .sermon-section p:last-child { margin-bottom: 0; }
 
   blockquote {
-    border-left: 4px solid #8b1a1a;
-    background: #f0ece3;
-    padding: 1rem 1.3rem;
-    margin: 1.4rem 0;
-    border-radius: 0 4px 4px 0;
+    border-left: 3px solid #c8b99a;
+    margin: 16px 0;
+    padding: 10px 18px;
+    color: #5c5248;
+    font-size: 15px;
     font-style: italic;
-    color: #444;
-  }
-  blockquote p { margin-bottom: 0; }
-
-  hr {
-    border: none;
-    border-top: 1px solid #d4c9b0;
-    margin: 2rem 0;
   }
 
-  .heart-sentence {
-    background: #2c2c2c;
+  .gospel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  @media (max-width: 580px) { .gospel-grid { grid-template-columns: 1fr; } }
+  .gospel-step {
+    background: #faf8f3;
+    border: 1px solid #e8e3d8;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .gospel-step .step-num {
+    font-size: 11px;
+    color: #8b1a1a;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+  }
+  .gospel-step p {
+    font-size: 14px;
+    color: #4a4540;
+    margin-bottom: 0 !important;
+  }
+
+  .declaration {
+    background: #2d2a24;
     color: #faf8f3;
-    padding: 1.2rem 1.5rem;
-    border-radius: 4px;
-    font-size: 1.05rem;
-    font-weight: 600;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-top: 20px;
+    font-size: 15px;
     line-height: 1.7;
-    margin: 1.5rem 0;
     text-align: center;
   }
 
-  table.compare-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.2rem 0;
-    font-size: 0.93rem;
-  }
-  table.compare-table th {
-    background: #3a2a1a;
-    color: #faf8f3;
-    padding: 0.6rem 0.9rem;
-    text-align: left;
-    font-weight: 600;
-  }
-  table.compare-table td {
-    padding: 0.55rem 0.9rem;
-    border: 1px solid #d4c9b0;
-    vertical-align: top;
-  }
-  table.compare-table tr:nth-child(even) td { background: #f5f1e8; }
-
-  /* Scripture block */
-  .scripture-block {
-    background: #f5f1e8;
-    border: 1px solid #d4c9b0;
-    border-radius: 4px;
-    padding: 1.2rem 1.5rem;
-    margin: 1.5rem 0;
-    font-size: 0.95rem;
-    line-height: 2;
-    color: #3a2a1a;
-  }
-  .scripture-block sup { font-size: 0.7rem; color: #8b1a1a; font-weight: 700; }
-
-  .anchor-tag {
+  .series-badge {
     display: inline-block;
-    background: #8b1a1a;
-    color: white;
-    font-size: 0.75rem;
-    padding: 0.15rem 0.6rem;
-    border-radius: 2px;
-    margin-bottom: 1rem;
-    letter-spacing: 0.08em;
+    background: #3d2a0a;
+    color: #e8d5b0;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 6px;
+    letter-spacing: 0.05em;
   }
 
-  footer {
+  /* READING CARDS */
+  .reading-section { margin-top: 56px; }
+  .reading-card {
+    background: #f7f4ed;
+    border: 1px solid #e0d8c8;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .reading-card summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+  }
+  .reading-card summary::-webkit-details-marker { display: none; }
+  .reading-card summary::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #8b7355;
+    font-weight: 300;
+  }
+  .reading-card[open] summary::after { content: '−'; }
+  .reading-tag {
+    background: #5c4a20;
+    color: #f0e6cc;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .reading-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d2a24;
+    line-height: 1.5;
+    padding-right: 30px;
+  }
+  .reading-body {
+    padding: 4px 24px 24px;
+    border-top: 1px solid #e0d8c8;
+  }
+  .reading-body p {
+    margin-top: 14px;
+    font-size: 15px;
+    color: #4a4540;
+    line-height: 1.8;
+  }
+  .reading-source {
+    font-size: 12px;
+    color: #8b7355;
+    margin-top: 16px !important;
+    font-style: italic;
+  }
+
+  .page-footer {
     text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.8rem;
-    color: #aaa;
-    border-top: 1px solid #d4c9b0;
-    background: #f0ece3;
-  }
-
-  @media (max-width: 480px) {
-    .tab-btn { padding: 0.7rem 0.9rem; font-size: 0.82rem; }
-    h1.sermon-title { font-size: 1.4rem; }
-    h2 { font-size: 1.05rem; }
-    .sermon-wrap { padding: 1.8rem 1rem 3rem; }
+    padding: 48px 20px;
+    font-size: 13px;
+    color: #9c9080;
+    border-top: 1px solid #e0dbd0;
+    margin-top: 60px;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="series-label">수영로교회 · 평일새벽설교 · 시편 시리즈</div>
-  <h1>이미 받은 자 — 시편 14·15·16편</h1>
-  <div class="subtitle">이승목 목사 | 2026년 7월</div>
+<header class="page-header">
+  <div class="series-label">수영로교회 34교구 · 평일새벽설교 · 2026년 7월</div>
+  <h1>시편 1–17편<br>이미 받은 자</h1>
+  <p class="subtitle">수동태 신학 — 하나님이 먼저 행하신 것들의 선언</p>
+  <p class="preacher">설교자 이승목 목사</p>
 </header>
 
-<nav class="tabs-nav">
-  <button class="tab-btn active" onclick="showTab(0)">시편 14편 (7/17)</button>
-  <button class="tab-btn" onclick="showTab(1)">시편 15편 (7/18)</button>
-  <button class="tab-btn" onclick="showTab(2)">시편 16편 (7/21)</button>
-</nav>
+<div class="container">
 
-<!-- ===== 시편 14편 ===== -->
-<div class="tab-panel active" id="panel-0">
-<div class="sermon-wrap">
-
-  <div class="anchor-tag">Anchor · 거기서(šām)</div>
-  <h1 class="sermon-title">나발의 세계에서 이미 피난처를 받은 자</h1>
-
-  <div class="sermon-meta">
-    <div class="date">2026년 7월 17일 (금) 평일새벽설교</div>
-    <div class="scripture">시편 14:1-7 · 시편 9-14편 수동태 시리즈 완결</div>
-    <div class="thesis">세상이 다 나발이 되어도, 하나님은 이미 의인의 피난처가 되셨다</div>
-    <div class="keywords">핵심 원어: <span class="heb">נָבָל</span>(나발) · <span class="heb">מַחְסֶה</span>(마흐세)</div>
+  <div class="intro-block">
+    <p>이 시리즈의 중심 통찰은 하나의 문법에 담겨 있습니다. 히브리어 완료형(perfect)은 이미 완결된 사건을 선언합니다. 아직 상황이 바뀌지 않은 자리에서도, 믿음은 먼저 완료형으로 선포합니다.</p>
+    <p>시편 9-14편 수동태 시리즈: 이미 기억하심 → 이미 보심 → 이미 뵈오이심 → 이미 지키심 → 이미 후대하심 → 이미 피난처를 받음. 시편 1-8편은 그 서막, 시편 15-17편은 그 꽃입니다.</p>
   </div>
 
-  <hr>
+  <div class="section-title">시편 설교 전편 (17편)</div>
 
-  <h2>서론: 다윗이 보고 있는 현실</h2>
-  <p>다윗이 이 시편을 기록했을 때, 그는 사울 왕의 칼날을 피해 광야를 떠돌고 있었거나, 아들 압살롬의 반역으로 예루살렘을 등지고 맨발로 도망치던 그 밤이었을지 모릅니다. 다윗은 눈을 들었습니다. 그가 본 세상은 어떤 곳이었습니까.</p>
-  <p>하나님의 이름을 부르는 자가 없습니다. 여호와를 찾는 자가 보이지 않습니다. 부자는 가난한 자를 밥 먹듯 삼키고, 권세 있는 자는 없는 자를 짓밟습니다. 의인은 조롱당하고 악인은 번창합니다. 다윗의 내면에서 울부짖음이 솟구쳤을 것입니다. "하나님, 당신은 어디 계십니까. 이 세상이 당신 없이 돌아가고 있지 않습니까."</p>
-  <p>그러나 성령은 다윗의 입에 전혀 다른 말씀을 올려놓으셨습니다. 다윗이 발견한 것은 하나님의 부재가 아니었습니다. 가장 뜻밖의 자리에서, 가장 예상치 못한 방식으로 — 하나님의 현존이었습니다. "거기서(šām)." 나발의 세계 한복판에서.</p>
-  <p>성도 여러분, 오늘 우리도 그 자리에 서 있습니다. 세상이 다 나발이 된 것 같은 이 자리에서, 우리에게 선포되는 말씀이 있습니다. 하나님은 이미 의인의 피난처가 되셨습니다. 이미. 그렇습니다.</p>
+  <!-- PSALM 1 -->
+  <details class="sermon-block" id="psalm-1">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 1편</span>
+        <span class="psalm-date">2026.07.01</span>
+        <span class="psalm-title">복은 심겨지는 것이다</span>
+      </div>
+      <div class="psalm-thesis">성도는 열매를 만들지 않는다 — 말씀 앞에 뿌리를 내린다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">אַשְׁרֵי</span>(아쉬레이, 선언적 복) · <span class="heb">הָגָה</span>(하가, 읊조리다) · <span class="heb">שָׁתוּל</span>(샤툴, 심겨진)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론</h3>
+        <p>'갓생'이 유행합니다. 새벽 5시 기상, 운동, 독서, 자기계발. 우리 시대는 열매를 스스로 만들어 내는 사람을 이상으로 삼습니다. 그런데 시편 1편은 전혀 다른 그림을 그립니다. 나무와 겨의 대비입니다.</p>
+        <p>아우구스티누스는 고백했습니다. "당신이 우리를 당신을 위해 만드셨으므로, 당신 안에 안식하기까지 우리 마음은 불안합니다." 복을 만들어 내려 할수록, 안달 속에서 겨처럼 흩어집니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">אַשְׁרֵי</span>(아쉬레이): "복이 있도다"는 감탄사입니다. 이 단어는 명령이 아닙니다. 선언입니다. "이 사람이 이미 복 안에 있다"는 외침입니다. 복은 달성하는 것이 아니라 받는 것입니다.</p>
+        <p><span class="heb">הָגָה</span>(하가): "주야로 묵상하다"의 원어입니다. 단순한 지적 활동이 아닙니다. 새끼 사자가 먹이를 으르렁거리며 음미하는 것(사 31:4), 비둘기가 구구거리는 것(사 38:14)에도 같은 단어를 씁니다. 온 존재로 말씀을 씹어 음미하는 것이 하가입니다.</p>
+        <p><span class="heb">שָׁתוּל</span>(샤툴): "심겨진 나무"입니다. 수동태입니다. 나무는 스스로 강가에 서지 않습니다. 심겨진 것입니다. 누군가가 뿌리를 흙 속에 박아 준 것입니다. 성도의 열매는 뿌리에서 납니다. 뿌리는 말씀입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>복음 4단계</h3>
+        <div class="gospel-grid">
+          <div class="gospel-step"><div class="step-num">① 다 이루심</div><p>예수님은 이미 완전한 나무이십니다. 그분이 율법을 온전히 이루셨고, 말씀 앞에 뿌리 내린 완전한 삶을 사셨습니다.</p></div>
+          <div class="gospel-step"><div class="step-num">② 우리에게 주심</div><p>그분의 의로움이 우리 것이 됩니다. 우리는 그분 안에 접붙인 가지입니다. 이미. 은혜로.</p></div>
+          <div class="gospel-step"><div class="step-num">③ 우리도 할 수 있음</div><p>새벽에 말씀 앞에 나오는 것. 그것이 하가입니다. 열매를 내려 애쓰기 전에, 뿌리를 내리는 자리에 앉는 것.</p></div>
+          <div class="gospel-step"><div class="step-num">④ 주님께서 이루심</div><p>열매는 우리가 만들지 않습니다. 시절을 좇아, 주님이 맺게 하십니다. 우리의 할 일은 강가에 심겨진 것을 아는 것입니다.</p></div>
+        </div>
+      </div>
+      <div class="declaration">성도는 열매를 만들지 않는다. 말씀 앞에 뿌리를 내린다.<br>— 나는 이미 심겨진 자다.</div>
+    </div>
+  </details>
 
-  <hr>
+  <!-- PSALM 2 -->
+  <details class="sermon-block" id="psalm-2">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 2편</span>
+        <span class="psalm-date">2026.07.02</span>
+        <span class="psalm-title">반역의 왕좌에 웃으시다</span>
+      </div>
+      <div class="psalm-thesis">반역하는 세상 한가운데, 하나님은 이미 아드님을 왕좌에 세우셨다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">רִיק</span>(리크, 헛된/공허) · <span class="heb">מָשִׁיחַ</span>(마쉬아크, 메시아) · <span class="heb">יִשְׂחָק</span>(이스하크, 웃다)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론</h3>
+        <p>세 살 아이가 아버지에게 작은 주먹을 휘두릅니다. 아버지는 웃습니다. 무시해서가 아닙니다. 그 작은 주먹이 자신을 이길 수 없다는 것을 알기 때문입니다. 하나님이 반역하는 열국을 보시고 웃으시는 것이 그런 웃음입니다.</p>
+        <p>G.K. 체스터튼은 말했습니다. "악이 이기는 것처럼 보이는 것은, 선이 지켜보고 있는 것입니다." 시편 2편의 선언이 그것입니다. 이미 왕좌는 정해졌습니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">רִיק</span>(리크): "어찌하여 열방이 헛된 일을 꾸미는가"(v.1)의 '헛된'이 리크입니다. 공허, 무의미함. 하나님의 기름 부으신 자를 대적하는 모든 시도가 리크입니다. 역사 속에서 권세들이 그분을 대적했습니다. 그러나 그 모든 것이 리크였습니다.</p>
+        <p><span class="heb">מָשִׁיחַ</span>(마쉬아크): 기름 부음 받은 자. 메시아. 하나님이 이미 세우신 왕입니다. "내가 나의 왕을 내 거룩한 산 시온에 세웠다"(v.6)는 완료형 선언입니다. 열국이 반역을 꾸미는 그 순간에도, 마쉬아크의 즉위는 이미 선언된 것입니다.</p>
+        <p><span class="heb">יִשְׂחָק</span>(이스하크): 웃다. 하나님의 웃음은 냉소가 아닙니다. 절대 주권자의 여유입니다. 그분의 목적을 막을 수 있는 것이 없다는 확신에서 나오는 웃음입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>선언</h3>
+        <p>오늘도 세상은 <span class="heb">רִיק</span>을 꾸밉니다. 그러나 하나님은 하늘에서 이미 웃고 계십니다. 아드님의 왕좌는 흔들리지 않습니다. 그 왕의 백성인 우리도 흔들리지 않습니다.</p>
+      </div>
+      <div class="declaration">반역하는 세상 한가운데,<br>하나님은 이미 아드님을 왕좌에 세우셨다.</div>
+    </div>
+  </details>
 
-  <h2>본론 1. <span class="heb">נָבָל</span>(나발): 마음의 선언이 만들어내는 세상</h2>
-  <p>1절을 보겠습니다.</p>
-  <blockquote><p>"어리석은 자는 그의 마음에 이르기를 하나님이 없다 하는도다."</p></blockquote>
-  <p>'어리석은 자'를 원문에서 찾으면 이 단어가 나옵니다. <span class="heb">נָבָל</span>(나발, nabal). 우리가 흔히 생각하는 지능의 결핍을 뜻하지 않습니다. 성경에서 나발은 도덕적·영적 어리석음을 가리킵니다. 하나님의 현실을 거부하고 그것을 삶으로 살아내는 자입니다.</p>
-  <p>박영식 교수(서울신학대학교)는 이것을 '실천적 무신론'이라 불렀습니다. "신을 믿지만 실제는 신과 관계없이 살아가는 것." 맞습니다. 입으로는 하나님을 시인하지만, 실제 결정의 순간에는 하나님이 없는 것처럼 사는 것. 그것이 나발입니다.</p>
-  <p><span class="heb">נָבָל</span>(나발)은 '마음에 이릅니다'. 벨립보(bə-libbô) — "그의 마음 안에서." 이것은 먼저 마음의 사건입니다. 공개적인 선언보다 앞서, 마음에서 하나님을 지웁니다. 재판정에서 판사를 먼저 마음속으로 퇴위시킵니다.</p>
-  <p>왜 그런가. 양진일 주석가가 정확히 짚었습니다. "나발은 하나님이 없기를 바란다. 심판자를 지워야 자기가 판관이 될 수 있기 때문이다." 나발이 원하는 것은 단순히 신앙의 해체가 아닙니다. 자기 자신이 세상의 기준이 되고 싶은 것입니다. 하나님이 있으면 자신이 심판받습니다. 그래서 마음속에서 먼저 하나님을 지워버립니다.</p>
-  <p>아서 밀러의 말이 떠오릅니다. "어느 날 고개를 들어보니 법대가 텅 비어 있었다. 판사가 보이질 않더라고." 현대 문명이 걸어온 길이 그것입니다. 판사를 지우고, 법대를 비워두고, 각자가 자신의 판사가 된 세상. 그것이 나발의 세계입니다.</p>
-  <p>성경에는 이 이름을 가진 실제 인물이 등장합니다. 사무엘상 25장의 나발입니다. 그는 부자였고 땅이 있었고 양 떼가 있었습니다. 다윗이 사람을 보내어 도움을 청하자 나발은 이렇게 대꾸했습니다. "다윗이 누구냐. 이새의 아들이 누구냐." 그는 하나님이 기름 부으신 자를 알아보지 못했습니다. 아니, 알아보려 하지 않았습니다. 그것이 나발입니다. 하나님이 지목하신 현실을 자기 편의대로 지워버리는 사람.</p>
-  <p>이 마음의 선언이 불러오는 귀결을 1절 하반절이 선포합니다. "그들은 부패하고 그 행실이 가증하니 선을 행하는 자가 없도다." 부패. 가증. 선의 소멸. 이것은 도덕적 노력의 실패가 아닙니다. 뿌리가 잘린 결과입니다. 마음에서 하나님을 지우면 필연적으로 따라오는 것들입니다.</p>
-  <p>그렇다면, 하나님은 이 모든 것을 내려다보시며 무엇을 하고 계셨습니까.</p>
+  <!-- PSALM 3 -->
+  <details class="sermon-block" id="psalm-3">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 3편</span>
+        <span class="psalm-date">2026.07.03</span>
+        <span class="psalm-title">방패가 하나님이시면</span>
+      </div>
+      <div class="psalm-thesis">하나님이 나의 방패이실 때, 우리는 두려움의 한가운데서 눕는다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">מָגֵן</span>(마겐, 방패) · <span class="heb">שָׁכַב</span>(샤카브, 눕다/잠들다)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>배경과 서론</h3>
+        <p>압살롬의 반역. 아들이 아버지의 왕좌를 빼앗으려 합니다. 최측근 아히도벨이 배신했습니다. 다윗은 맨발로 예루살렘을 떠납니다. "수만 명이 사방에서 우리를 에워쌌다"(v.6). 이 절박한 밤, 다윗이 기도합니다.</p>
+        <p>그런데 5절이 놀랍습니다. "내가 누워 자고 깨었으니." 수만 명이 포위한 밤에, 다윗이 잠들었습니다. 어떻게 이것이 가능합니까.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">מָגֵן</span>(마겐): 방패. "여호와여 주는 나의 방패시요"(v.3). 방패는 공격 무기가 아닙니다. 덮는 것입니다. 가리는 것입니다. 하나님이 방패이시다는 것은, 그분이 나와 위험 사이에 서 계신다는 것입니다.</p>
+        <p><span class="heb">שָׁכַב</span>(샤카브): 눕다. 평안히 눕는 행위입니다. 방패가 있는 자만이 눕습니다. 스스로 보초를 서야 하는 자는 눕지 못합니다. 하나님이 방패이실 때, 우리는 눕습니다. 이것이 신앙입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>복음과 선언</h3>
+        <p>겟세마네에서 예수님은 땀이 핏방울 같이 되도록 기도하셨습니다. 방패 없이 그 밤을 보내셨습니다. 우리 대신 방패 없는 자리에 서심으로, 우리에게 영원한 방패를 주셨습니다.</p>
+      </div>
+      <div class="declaration">하나님이 나의 방패이실 때,<br>나는 두려움의 한가운데서도 눕는다.</div>
+    </div>
+  </details>
 
-  <hr>
+  <!-- PSALM 4 -->
+  <details class="sermon-block" id="psalm-4">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 4편</span>
+        <span class="psalm-date">2026.07.04</span>
+        <span class="psalm-title">주께서 두신 기쁨</span>
+      </div>
+      <div class="psalm-thesis">세상이 채울 수 없는 마음에, 하나님이 기쁨을 두시고 평안히 눕게 하신다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">הַרְחַב</span>(하르하브, 넓히다) · <span class="heb">שִׂמְחָה</span>(심하, 기쁨) · <span class="heb">בְּטַח</span>(베타흐, 신뢰로 거하다)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론</h3>
+        <p>"좋은 것을 보여 줄 자 누구리요"(v.6). 이것은 우리 시대의 질문입니다. 사람들은 각자의 해답을 가리킵니다. 이 경험, 이 관계, 이 성취. 그런데 다윗은 한 가지 대답을 합니다. "여호와의 얼굴을."</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">הַרְחַב</span>(하르하브): "나를 곤란 중에서 넓히소서"(v.1). 좁은 곳(메차르)에서 넓은 곳(하르하브)으로. 하나님은 상황을 꼭 바꾸시지 않습니다. 그 안에서 내 마음을 넓히십니다. 좁은 현실 안에서 넓게 숨 쉴 수 있는 것, 그것이 하르하브입니다.</p>
+        <p><span class="heb">שִׂמְחָה</span>(심하): 기쁨. "주께서 내 마음에 두신 기쁨"(v.7). 주목하십시오. 기쁨이 '생겼다'가 아닙니다. '두셨다'입니다. 하나님이 두신 것입니다. 수동입니다. 이 기쁨은 우리가 만든 것이 아닙니다. 넣어 주신 것입니다.</p>
+        <p><span class="heb">בְּטַח</span>(베타흐): "평안히 눕겠다"(v.8). 신뢰 안에 거한다는 뜻입니다. 시편 3편에서 눕는 자가 여기서도 눕습니다. 방패 때문에 누웠고, 두신 기쁨 때문에 눕습니다.</p>
+      </div>
+      <div class="declaration">하나님이 마음에 두신 기쁨으로,<br>나는 평안히 눕고 자리이다. — 주어가 여호와이시다.</div>
+    </div>
+  </details>
 
-  <h2>본론 2. 하나님이 굽어보신다: 역설의 시선</h2>
-  <p>2절을 보겠습니다.</p>
-  <blockquote><p>"여호와께서 하늘에서 인생을 굽어살피사 지각이 있는 자와 하나님을 찾는 자가 있는가 보려 하신즉."</p></blockquote>
-  <p>'굽어살피사'의 히브리어 동사는 히쉬키프(hišqîf)입니다. 높은 곳에서 아래를 내려다보는 행위입니다. 성벽 위에서, 창문에서, 망대에서 아래를 내려다보는 그 시선. 하나님은 하늘에서 인생을 그렇게 내려다보고 계십니다.</p>
-  <p>여기서 강력한 역설이 발생합니다. <span class="heb">נָבָל</span>(나발)은 마음에서 하나님을 지웁니다. 하나님이 없다고 선언합니다. 그런데 하나님은 그 순간에도 나발을 내려다보고 계십니다. 나발이 하나님을 지울 때, 하나님은 나발을 보고 계십니다. 나발의 선언이 틀렸다는 것을, 하나님은 알고 계십니다.</p>
-  <p>개혁주의 신학은 이 "굽어보심" 장면에서 두 진리가 동시에 드러난다고 봅니다. 하나는 전적 부패(total depravity) — 아무도 의롭지 않다는 하나님의 진단입니다. 그러나 다른 하나는 선행 은혜(prevenient grace)입니다. 하나님이 먼저 탐색하고 계십니다. 나발이 하나님을 지우는 바로 그 자리에서, 하나님은 먼저 의인을 찾고 계십니다. 탐색하는 분이 하나님이십니다. 우리가 먼저 찾아간 것이 아닙니다.</p>
-  <p>3절의 결론은 충격적입니다. "다 치우쳐 함께 더러워지고 선을 행하는 자가 없으니 하나도 없도다." '다'입니다. 예외가 없습니다. 이것은 인류의 보편적 타락에 대한 신적 진단입니다. 한 사람도 하나님 앞에 의롭지 않습니다. 여기서 성경은 나발을 특수한 인물로 묘사하지 않습니다. 우리 모두의 현실을 묘사합니다.</p>
-  <p>4절은 나발의 세계가 어디로 귀결되는지 보여줍니다. "백성 먹듯 삼키며." 하나님을 지운 자들은 결국 서로를 삼킵니다. 강자가 약자를 삼키고, 지혜로운 자가 어리석은 자를 이용하고, 가진 자가 없는 자를 짓밟습니다. 나발의 세계의 민낯입니다.</p>
-  <p>시몬 베유는 이렇게 말했습니다. "죄는 빈 구멍을 채우려는 몸부림이다. 하나님이 만들어 두신 구멍을 오직 하나님만 채우실 수 있다." <span class="heb">נָבָל</span>(나발)은 하나님 없이 그 구멍을 채우려 합니다. 다른 사람을 먹으면서, 권력을 먹으면서, 돈을 먹으면서. 그러나 그 구멍은 채워지지 않습니다. 더 깊어질 뿐입니다.</p>
-  <p>여기까지 읽으면 막막합니다. 다 나발이고, 다 부패했습니다. 그런데 바로 다음 절이 시작됩니다. 결정적인 한 단어와 함께.</p>
+  <!-- PSALM 5 -->
+  <details class="sermon-block" id="psalm-5">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 5편</span>
+        <span class="psalm-date">2026.07.05</span>
+        <span class="psalm-title">헤세드가 문을 열다</span>
+      </div>
+      <div class="psalm-thesis">하나님 앞에 설 수 없는 자가 오늘 아침 그 앞에 선다 — 문을 연 것은 헤세드다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">בֹּקֶר</span>(보케르, 아침) · <span class="heb">חֶסֶד</span>(헤세드, 언약적 사랑)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론 — 들어갈 수 없는 목록</h3>
+        <p>v.4-6에서 다윗은 하나님 앞에 들어갈 수 없는 자들의 목록을 나열합니다. 악을 기뻐하지 않으시는 하나님. 거만한 자가 눈앞에 서지 못하며, 모든 죄악을 미워하시는 하나님. 이 기준을 읽으면, 아무도 들어갈 수 없다는 결론이 납니다.</p>
+        <p>그런데 v.7이 시작됩니다. "오직(와아니)." 그러나 나는.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">בֹּקֶר</span>(보케르): 아침. "여호와여 아침에 주께서 나의 소리를 들으시리니"(v.3). 다윗의 기도는 아침에 드려집니다. 하나님 앞에 나아갈 수 없는 자가, 아침마다 그 앞에 옵니다. 이것이 새벽예배의 신학입니다.</p>
+        <p><span class="heb">חֶסֶד</span>(헤세드): 인자하심/언약적 사랑. "주의 인자하심을 힘입어 내가 주의 집에 들어가리이다"(v.7). 내가 들어가는 자격이 없다는 것을 알면서도 들어갈 수 있는 유일한 이유 — 헤세드입니다. 문을 연 것은 내 자격이 아닙니다. 헤세드입니다.</p>
+        <p>마가복음 15:38 — 예수님의 마지막 호흡과 함께 성전 휘장이 찢어졌습니다. 들어갈 수 없던 지성소의 문이 열렸습니다. 헤세드가 문을 열었습니다. 십자가로.</p>
+      </div>
+      <div class="declaration">들어갈 자격이 없는 자가 아침에 선다.<br>문을 연 것은 헤세드다.</div>
+    </div>
+  </details>
 
-  <hr>
+  <!-- PSALM 6 -->
+  <details class="sermon-block" id="psalm-6">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 6편</span>
+        <span class="psalm-date">2026.07.07</span>
+        <span class="psalm-title">이미 들으셨도다</span>
+      </div>
+      <div class="psalm-thesis">눈물이 마르기 전에, 우리는 이미 들으심을 받은 자다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">חָנֵּנִי</span>(한네니, 은혜 구함) · <span class="heb">אֶנָחָה</span>(아나하, 신음/탄식) · <span class="heb">שָׁמַע</span>(샤마, 들으셨도다—완료형)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>시편의 극적 전환</h3>
+        <p>v.1-7까지 다윗은 절규합니다. "여호와여 나를 징계하지 마옵소서." 침상이 눈물로 젖고 요가 적십니다. 탄식이 끝이 없습니다. 상황은 하나도 변하지 않았습니다.</p>
+        <p>그런데 v.8에서 갑자기 언어가 바뀝니다. "여호와께서 내 통곡 소리를 들으셨도다." 완료형입니다. 들으셨다. 과거 완료. 이미.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">אֶנָחָה</span>(아나하): 신음, 탄식. v.6에서 다윗은 신음으로 지칩니다. 이 단어는 언어 이전의 소리입니다. 말로 형성되기 전 가슴에서 나오는 소리. 성경은 이 신음을 하나님이 들으신다고 합니다(출 2:24, 롬 8:26).</p>
+        <p><span class="heb">שָׁמַע</span>(샤마, 완료형): v.8-9에서 세 번 반복됩니다. "들으셨도다 / 들으시리이다 / 받으시리이다." 완료형 선언이 미완료(확신)로 이어집니다. 상황 변화 없이 선언만 변합니다. 이것이 히브리어 완료형 신학입니다.</p>
+        <p>팀 켈러: "예수님의 기도는 한 번 거절받았습니다. 겟세마네에서. 그래서 우리의 기도는 거절받지 않습니다."</p>
+      </div>
+      <div class="declaration">눈물이 마르기 전에,<br>나는 이미 들으심을 받은 자다.</div>
+    </div>
+  </details>
 
-  <h2>본론 3. "거기서" — <span class="heb">מַחְסֶה</span>(마흐세)의 역전</h2>
-  <p>5절을 보겠습니다.</p>
-  <blockquote><p>"그러나 거기서 그들이 두려워하고 두려워하였으니."</p></blockquote>
-  <p>"거기서(šām)." 히브리어로 샴. "그곳에서." "바로 그 자리에서." 이 단어 하나가 오늘 설교 전체의 축입니다. 나발의 세계, 부패와 가증이 넘치는 그 자리, 서로를 삼키는 그 세계 — 바로 거기서 무슨 일이 일어납니까.</p>
-  <p>나발들이 두려워합니다. 하나님을 지웠다고 생각했는데, 거기서 두려움이 엄습합니다. 이 두려움은 막연한 불안이 아닙니다. 5절 하반절이 이유를 댑니다. "하나님이 의인의 세대에 계심이로다." 하나님이 의인과 함께 계시다는 현실 앞에서, 나발은 두려워하지 않을 수 없습니다. 지운 줄 알았던 그분이 거기 계셨기 때문입니다.</p>
-  <p>그리고 6절. 여기서 결정적인 선언이 나옵니다.</p>
-  <blockquote><p>"너희가 가난한 자의 계획을 부끄럽게 하나 여호와는 그의 피난처이시로다."</p></blockquote>
-  <p>피난처. 이 단어가 오늘의 두 번째 핵심 원어입니다. <span class="heb">מַחְסֶה</span>(마흐세, machseh). 어근은 하사(ḥāsâ) — "피하다, 신뢰하여 달려들다"는 의미입니다. 여기서 중요한 것이 있습니다. 마흐세는 단순히 도피하는 장소가 아닙니다. 관계 속에서 신뢰하며 안기는 것입니다. 두려울 때 부모 품에 달려드는 아이처럼, 폭풍 속에서 반석 틈에 몸을 숨기듯 — 그것이 <span class="heb">מַחְסֶה</span>(마흐세)입니다.</p>
+  <!-- PSALM 7 -->
+  <details class="sermon-block" id="psalm-7">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 7편</span>
+        <span class="psalm-date">2026.07.08</span>
+        <span class="psalm-title">심판하소서, 그것이 피난처입니다</span>
+      </div>
+      <div class="psalm-thesis">의로우신 재판관의 법정에 피하는 자가 가장 안전하다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">חָסָה</span>(하사, 피하다/파고들다) · <span class="heb">שָׁפַט</span>(샤파트, 심판하다)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론 — 억울한 자의 법정</h3>
+        <p>억울한 판결을 받은 자는 더 높은 법원으로 달려갑니다. 하급 법원의 판결이 부당할 때 상고합니다. 다윗이 지금 그렇게 합니다. "여호와여 나를 피난처 삼는 나를 심판하소서"(v.8 원의). 더 높은 법정으로 달려가는 것입니다. 그런데 그 최고 법원이 피난처이기도 합니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">חָסָה</span>(하사): "피하나이다"(v.1). 단순한 도피가 아닙니다. 파고드는 것입니다. 바위 틈새로 몸을 밀어 넣는 것입니다. 성전은 고대 이스라엘에서 피난처였고(양진일) 동시에 법정이었습니다. 하사는 그 법정 안으로 뛰어드는 것입니다.</p>
+        <p><span class="heb">שָׁפַט</span>(샤파트): 심판하다. 피난처에서 심판을 구한다는 역설. 의로우신 재판관 앞에서 심판받는 자는 두렵지 않습니다. 오히려 가장 안전합니다. 롬 8:1 — "그리스도 예수 안에 있는 자에게는 결코 정죄함이 없다."</p>
+        <blockquote>레베카 피펫: "분노는 사랑의 반대가 아닙니다. 의로우신 하나님의 분노는 사랑에서 나옵니다."</blockquote>
+      </div>
+      <div class="declaration">의로우신 재판관의 법정이 피난처다.<br>심판받는 자리가 가장 안전한 자리다.</div>
+    </div>
+  </details>
 
-  <p>두 원어를 나란히 놓아봅니다.</p>
-  <table class="compare-table">
-    <thead>
-      <tr>
-        <th><span class="heb">נָבָל</span> (나발)</th>
-        <th><span class="heb">מַחְסֶה</span> (마흐세)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>하나님을 마음에서 지운다</td><td>하나님이 품이 된다</td></tr>
-      <tr><td>스스로 판관이 되려 한다</td><td>신뢰하며 안긴다</td></tr>
-      <tr><td>다른 사람을 먹는다</td><td>가난한 자도 안전하다</td></tr>
-      <tr><td>두려움이 엄습한다</td><td>하나님이 거기 계신다</td></tr>
-    </tbody>
-  </table>
+  <!-- PSALM 8 -->
+  <details class="sermon-block" id="psalm-8">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 8편</span>
+        <span class="psalm-date">2026.07.09</span>
+        <span class="psalm-title">우주가 너를 작다 할 때</span>
+      </div>
+      <div class="psalm-thesis">가장 약한 에노쉬에게 관을 씌우시는 것이 주의 이름의 아름다움이다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">אֱנוֹשׁ</span>(에노쉬, 필멸하는 약한 인간) · <span class="heb">כָּבוֹד</span>(카보드, 영화/영광)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론 — JWST 딥필드</html>
+        <p>제임스 웹 우주망원경(JWST)이 촬영한 딥필드 이미지. 손톱만 한 하늘 조각에 수천 개의 은하가 있습니다. 그 장면을 본 사람들의 첫 반응은 공통적이었습니다. "I feel so small." 폴 트립은 말합니다. "경이는 우리를 하나님께로 이끄는 다리입니다." 시편 8편은 그 경이에서 시작합니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">אֱנוֹשׁ</span>(에노쉬): v.4 "사람(에노쉬)이 무엇이기에 주께서 그를 생각하시나이까." 에노쉬는 히브리어에서 가장 약하고 필멸하는 인간을 가리키는 단어입니다. 아담(흙 사람)도 아니고, 기브르(용사)도 아닙니다. 가장 작고 무력한 존재.</p>
+        <p><span class="heb">כָּבוֹד</span>(카보드): 영화, 영광. "그를 영화롭게 하셨나이다"(v.5). 가장 작은 에노쉬에게 카보드를 씌우셨습니다. 거꾸로 된 왕관입니다. 세상은 강한 자에게 관을 씌웁니다. 하나님은 가장 약한 에노쉬에게 관을 씌우십니다.</p>
+        <p>히브리서 2:6-9 — 그 에노쉬가 예수님이십니다. 그분이 에노쉬가 되심으로 에노쉬인 우리에게 카보드를 돌려주셨습니다.</p>
+      </div>
+      <div class="declaration">우주가 너를 작다 해도,<br>가장 작은 에노쉬에게 관을 씌우시는 것이 주의 이름의 아름다움이다.</div>
+    </div>
+  </details>
 
-  <p><span class="heb">נָבָל</span>(나발)의 세계는 스스로 채우려 하는 세상입니다. <span class="heb">מַחְסֶה</span>(마흐세)는 이미 채워진 세상입니다. 나발은 자기 힘으로 살아남으려 합니다. 마흐세는 이미 안겨 있는 자입니다.</p>
-  <p>솔직히 말씀드리겠습니다. 저도 이 본문 앞에서 오래 머물렀습니다. 나발의 세계는 너무 현실이고, 피난처는 너무 멀게 느껴질 때가 있습니다. "하나님이 의인의 세대에 계신다"는 선언이 무너지는 것 같은 순간들이 있습니다. 현실에서 가난한 자의 계획은 실제로 부끄러워집니다. 악인이 이기는 것처럼 보입니다. 그 순간 이 말씀이 잘 들리지 않을 때가 있었습니다.</p>
-  <p>그런데 그 순간이 바로 이 본문이 쓰여진 자리입니다. 다윗도 그 자리에서 이 시편을 썼습니다. "거기서"라고 고백한 것입니다. 흔들리는 그 자리에서. 무너지는 것 같은 그 자리에서. 하나님이 거기 계신다고, 먼저 계셨다고.</p>
-  <p>성도 여러분, 피난처는 피해서 도달하는 자리가 아닙니다. 이미 있는 자리입니다. 여러분이 오늘 이 새벽에 나오신 것, 그것이 이미 <span class="heb">מַחְסֶה</span>(마흐세) 안에 있는 것입니다. 마흐세를 찾아가는 것이 아닙니다. 이미 받은 것입니다.</p>
-  <p>"거기서(šām)." 나발의 세계 한복판에서, 하나님은 이미 의인의 마흐세가 되셨습니다. 먼저 계셨습니다. 이미.</p>
+  <!-- PSALM 9 -->
+  <details class="sermon-block" id="psalm-9">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 9편</span>
+        <span class="psalm-date">2026.07.10</span>
+        <span class="psalm-title">이미 기억하심을 받은 자</span>
+      </div>
+      <div class="psalm-thesis">해결 전 감사의 역설 — 이미 기억하심(자카르)을 받은 자</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">מִבְצָר</span>(미브짜르, 요새) · <span class="heb">זָכַר</span>(자카르, 기억하다—완료형)</div>
+      <div><span class="series-badge">수동태 시편 시리즈 1편 — 기억하심</span></div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>역설의 구조</h3>
+        <p>다윗은 원수에게 둘러싸여 있습니다. 그런데 1절에서 전심으로 감사합니다. 해결이 없는데 감사가 먼저입니다. 이것이 이 시편의 역설입니다. 감사가 상황을 이기는 것이 아닙니다. 감사의 근거가 상황 너머에 있기 때문입니다.</p>
+        <p><span class="heb">מִבְצָר</span>(미브짜르): "여호와는 억압당하는 자의 요새"(v.9). 피고가 재판장에게 달려갑니다. 그런데 그 재판장이 요새입니다. 심판자가 곧 피난처입니다. 이 역설 속에서 다윗은 감사합니다.</p>
+        <p><span class="heb">זָכַר</span>(자카르, 완료형): "그는 가난한 자를 기억하심이여 — 기억하셨도다." 완료형입니다. 아직 구원이 오지 않았습니다. 그러나 하나님의 기억 안에 이미 들어가 있습니다. 잊히지 않는다는 것을 알기 때문에 먼저 감사합니다.</p>
+        <blockquote>팀 켈러: "풀무불 안에 함께 들어오신 분을 기억할 때, 우리는 풀무불 밖에서도 감사할 수 있습니다."</blockquote>
+      </div>
+      <div class="declaration">해결이 오기 전에 감사가 먼저다.<br>나는 이미 하나님의 기억 안에 있는 자다.</div>
+    </div>
+  </details>
 
-  <hr>
+  <!-- PSALM 10 -->
+  <details class="sermon-block" id="psalm-10">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 10편</span>
+        <span class="psalm-date">2026.07.11</span>
+        <span class="psalm-title">이미 보심을 받은 자</span>
+      </div>
+      <div class="psalm-thesis">"하나님이 없다"(v.4)에 맞서 "주는 보셨나이다"(v.14) — 완료형의 역전</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">רָאָה</span>(라아, 보셨나이다—완료형) · <span class="heb">שָׁכַח</span>(샤카흐, 잊으셨다)</div>
+      <div><span class="series-badge">수동태 시편 시리즈 2편 — 보심</span></div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>실천적 무신론의 3단계</h3>
+        <p>시편 10편의 악인은 세 단계를 밟습니다. v.4 "하나님이 없다" → v.6 "나는 흔들리지 않는다" → v.11 "하나님이 잊으셨다." 이것이 실천적 무신론의 내리막입니다. 하나님을 지우면, 자신이 중심이 되고, 하나님의 개입을 기대하지 않게 됩니다.</p>
+        <p>엔도 슈사쿠 《침묵》 — 순교자들이 밟은 성화(踏み絵) 앞에서, 사제는 묻습니다. "하나님, 왜 침묵하십니까?" CCTV의 사각지대처럼, 하나님이 보시지 않는 것 같은 그 느낌.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>완료형의 역전</h3>
+        <p>v.14: "주는 보셨나이다 — <span class="heb">רָאָה</span>(라아), 완료형." 주는 보셨습니다. 이미. 악인이 "하나님이 잊으셨다"고 주장하는 바로 그 순간에도, 하나님의 눈은 보고 계셨습니다. CCTV 사각지대는 하나님께 없습니다.</p>
+        <p>오스왈드 챔버스: "하나님의 침묵은 부재가 아닙니다. 폭풍 가운데서도 그분은 보고 계십니다."</p>
+      </div>
+      <div class="declaration">하나님이 없다고 선언하는 그 자리에서,<br>하나님은 이미 보고 계셨다. — 나는 보심을 받은 자다.</div>
+    </div>
+  </details>
 
-  <h2>본론 4. 시온에서 나오는 구원: 스케일의 전환</h2>
-  <p>7절을 보겠습니다.</p>
-  <blockquote><p>"이스라엘의 구원이 시온에서 나오기를 원하도다 여호와께서 그의 백성의 포로를 돌리실 때에 야곱이 즐거워하고 이스라엘이 기뻐하리로다."</p></blockquote>
-  <p>다윗은 여기서 시야를 넓힙니다. '나'에서 '야곱'으로, '야곱'에서 '이스라엘' 전체로. 개혁주의 성경 신학은 이 시온을 단순한 지명이 아닌 언약 신학의 집중점으로 읽습니다. 시온은 하나님의 언약이 거하는 자리이며, 그 언약의 완성이 나오는 자리입니다. 시온에서 나오는 구원은 다윗 왕권을 통해, 궁극적으로는 다윗의 자손 메시아 예수 그리스도를 통해 성취됩니다. 나발의 세계를 극복하는 힘은 인간의 개혁에서 나오지 않습니다. 시온에서 — 그분에게서 — 나옵니다. 개인의 고투에서 공동체의 종말론적 소망으로. <span class="heb">מַחְסֶה</span>(마흐세)는 개인의 피난처를 넘어 공동체 전체의 회복을 가리킵니다.</p>
-  <p>"돌리실 때"의 동사는 슈브(šûb)입니다. 회복. 돌아오게 하심. 이것은 하나님의 능동적 행위입니다. 우리가 돌아가는 것이 아닙니다. 하나님께서 돌리시는 것입니다. 수동태입니다. 우리는 돌이킴을 받는 자입니다.</p>
-  <p>야곱이 즐거워합니다. 이스라엘이 기뻐합니다. <span class="heb">נָבָל</span>(나발)의 세계에서 빼앗겼던 것들이 회복됩니다. 그 회복은 시온에서 나옵니다. 인간의 계획에서 나오지 않습니다. 나발의 세계를 극복하는 우리의 힘에서 나오지 않습니다. 시온에서 — 하나님께서 계신 그 자리에서 — 나옵니다. 왜 그런가. 하나님이 먼저 거기 계시기 때문입니다. 이미.</p>
+  <!-- PSALM 11 -->
+  <details class="sermon-block" id="psalm-11">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 11편</span>
+        <span class="psalm-date">2026.07.14</span>
+        <span class="psalm-title">피하는 자, 이미 뵈오는 자</span>
+      </div>
+      <div class="psalm-thesis">피하는 자가 이미 뵈오는 자다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">בָּחַן</span>(바한, 정밀 감찰/제련) · <span class="heb">פָּנִים</span>(파님, 얼굴/임재)</div>
+      <div><span class="series-badge">수동태 시편 시리즈 3편 — 뵈오이심</span></div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론 — 백화점의 아이</h3>
+        <p>백화점 한복판에서 엄마 손을 놓쳤습니다. 사방에서 소리가 들립니다. "저쪽이야!" "안내 데스크로 가!" 그런데 그 아이는 움직이지 않습니다. 군중 속에서 한 얼굴만 찾습니다. 엄마의 얼굴. 다윗이 그 아이입니다. "새에게 피하라"는 소리 가운데, 다윗은 한 방향을 고집합니다. 여호와께로.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">בָּחַן</span>(바한): "그의 눈이 인류를 통촉하시고 그의 안목이 그들을 감찰하시도다"(v.4). 단순한 관찰이 아닙니다. 금속을 용광로에 넣어 순도를 확인하는 제련사의 시선입니다. 가짜와 진짜를 구별하는 눈. 표면이 아니라 본질을 꿰뚫어 봅니다.</p>
+        <p>욥 23:10 — "그가 나를 단련하신 후에는 내가 순금같이 되어 나오리라." 바한은 파괴가 아닙니다. 순도 확인입니다.</p>
+        <p><span class="heb">פָּנִים</span>(파님): "정직한 자는 그의 얼굴을 뵈오리로다"(v.7). 히브리어에서 파님은 복수형으로만 존재합니다. 단수가 없습니다. 하나님의 얼굴은 무한히 풍성합니다.</p>
+        <p>핵심 구조: 하나님이 하자(חָזָה)로 먼저 보시고(v.4), 우리가 하자로 뵙습니다(v.7). 같은 동사. 그러나 순서가 있습니다. 보심이 먼저입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>백화점의 역전</h3>
+        <p>아이가 엄마를 찾고 있는 그 시간, 엄마는 이미 바한하고 있었습니다. 군중을 정밀하게 스캔하며. 먼저 보고 있었습니다. 피하는 자가 이미 뵈오는 자입니다. 내가 그분께로 방향을 잡는 그 순간, 그분은 이미 나를 바한하고 계셨습니다.</p>
+      </div>
+      <div class="declaration">피하는 방향이 신앙을 드러낸다.<br>여호와께로 피하는 자는 이미 뵈오는 자다.</div>
+    </div>
+  </details>
 
-  <hr>
+  <!-- PSALM 12 -->
+  <details class="sermon-block" id="psalm-12">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 12편</span>
+        <span class="psalm-date">2026.07.15</span>
+        <span class="psalm-title">도가니에서 단련된 말씀이 도가니 속 우리를 지킨다</span>
+      </div>
+      <div class="psalm-thesis">도가니에서 단련된 말씀이 도가니 속 우리를 지킨다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">אִמְרוֹת</span>(임로트, 선포된 약속의 언어) · <span class="heb">שָׁמַר</span>(샤마르, 지키다/파수)</div>
+      <div><span class="series-badge">수동태 시편 시리즈 4편 — 지키심</span></div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론 — 위폐감별기</h3>
+        <p>은행의 위폐감별기는 흔들리지 않습니다. 진짜 지폐의 표식이 위조 불가능한 방식으로 새겨져 있기 때문입니다. 딥페이크의 시대, 레브 바레브(마음과 마음 = 두 마음)의 시대에 — 위조 불가능한 말씀이 있습니다.</p>
+        <p>v.2 "두 마음(레브 바레브)으로 말하는도다." v.4 "우리의 혀가 이기리라, 우리를 주관할 자 누구리요." 혀가 주권을 선언하는 시대. 그런데 v.5에서 하나님이 일어나십니다. 자랑하는 혀 때문이 아닙니다. 가련한 자들의 탄식 때문에.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">אִמְרוֹת</span>(임로트): v.6 "여호와의 말씀은 순전함이여 흙 도가니에 일곱 번 단련한 은 같도다." 임로트는 입에서 나온 약속의 내용, 선포된 언어 자체입니다. 일곱 번 단련 = 100% 순도. 위조 불가능합니다. 어떤 딥페이크도 복제할 수 없습니다.</p>
+        <p><span class="heb">שָׁמַר</span>(샤마르): "여호와여 그들을 지키사"(v.7). 양 떼를 치는 목자가 한눈을 팔지 않는 파수입니다. 민수기 6:24 아론 축도의 "지키시며"가 바로 샤마르입니다.</p>
+        <p>요 1:14 — "말씀이 육신이 되어." 예수님이 임로트가 되셨습니다. 도가니 속으로 직접 들어오셨습니다. 십자가가 인류 역사 최고의 도가니였습니다.</p>
+      </div>
+      <div class="declaration">단련된 말씀이 도가니 속 우리를 지킨다.<br>이미 지키심을 받은 자다.</div>
+    </div>
+  </details>
 
-  <h2>복음 연결: "거기서" 이루신 예수 그리스도</h2>
-  <p>이 시편의 완성은 어디에 있습니까. 예수 그리스도 안에 있습니다.</p>
-  <p><strong>다 이루심.</strong> 예수께서 나발의 세계에 오셨습니다. 부패와 가증이 넘치는 이 세상으로 직접 내려오셨습니다. 사람들은 "하나님이 없다"는 나발의 논리로 그분을 십자가에 못 박았습니다. 그러나 하나님은 "거기서(šām)" — 십자가 위에서, 무덤 속에서 — 부활로 응답하셨습니다. <span class="heb">נָבָל</span>(나발)이 하나님을 지운 바로 그 자리에서, 하나님은 현존을 선언하셨습니다. 나발의 선언이 틀렸음을, 부활이 증명하셨습니다.</p>
-  <p><strong>우리에게 주심.</strong> 그 부활의 <span class="heb">מַחְסֶה</span>(마흐세)가 우리의 것이 되었습니다. 예수 안에서 우리는 이미 피난처 안에 있습니다. 미래의 약속만이 아닙니다. 이미 주어진 현실입니다. 우리는 이미 마흐세를 받은 자입니다.</p>
-  <p><strong>우리도 할 수 있음.</strong> 성도 여러분, 우리가 해야 할 일이 있습니다. 마음에 하나님을 두는 것입니다. <span class="heb">נָבָל</span>(나발)은 마음에서 하나님을 지웠습니다. 우리는 반대입니다. 매일 아침 이 새벽에 나와서 마음에 하나님을 새기는 것. 그것은 불가능한 일이 아닙니다. 우리가 지금 하고 있는 일입니다.</p>
-  <p><strong>주님께서 이루심.</strong> 시온에서 나오는 구원은 오고 있습니다. 우리가 완성하는 것이 아닙니다. 주님이 이루십니다. 야곱이 즐거워하고 이스라엘이 기뻐하는 그 날은 반드시 옵니다.</p>
+  <!-- PSALM 13 -->
+  <details class="sermon-block" id="psalm-13">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 13편</span>
+        <span class="psalm-date">2026.07.16</span>
+        <span class="psalm-title">침묵 속에서 이미 후대하심을 받은 자</span>
+      </div>
+      <div class="psalm-thesis">침묵 속에서 이미 후대하심을 받은 자</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">חֶסֶד</span>(헤세드, 언약적 사랑) · <span class="heb">גָּמַל</span>(가말, 후대하다—완료형)</div>
+      <div><span class="series-badge">수동태 시편 시리즈 5편 — 후대하심</span></div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>세 겹의 고통과 절규</h3>
+        <p>"어느 때까지니이까" — 네 번 반복됩니다(v.1-2). 수직의 고통(하나님의 침묵), 내면의 고통(영혼의 번민), 수평의 고통(원수의 승리). 팀 켈러: "'만사형통' 철학을 고안하려는 사람은 이 시편을 찢어 버려야 한다."</p>
+        <p>v.3의 호칭 변화: "여호와여"(v.1) → "여호와 내 하나님이여"(v.3). "내"가 추가됩니다. 침묵하시는 분을 여전히 자신의 하나님으로 부르는 것. 이것이 믿음의 언어입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>완료형 선언</h3>
+        <p><span class="heb">חֶסֶד</span>(헤세드): "나는 주의 인자하심을 의지하였사오니"(v.5). 헤세드는 언약에 묶인 사랑입니다. 하나님의 감정 상태가 아니라 하나님의 언약에 달린 것이기 때문에, 침묵 속에서도 철회되지 않습니다.</p>
+        <p><span class="heb">גָּמַל</span>(가말, 완료형): "이는 나를 후대하셨음이로다"(v.6). 아직 아무것도 바뀌지 않았습니다. 원수는 여전히 위협합니다. 그런데 완료형으로 선언합니다. 이것이 예언자적 완료형(prophetic perfect)입니다. 미래에 반드시 일어날 일을 믿음이 먼저 과거형으로 선언하는 것.</p>
+        <p>새벽 4시, 어둠 속에서 일기장에 쓰는 사람: "오늘 해가 떴다." 아직 해는 뜨지 않았습니다. 그러나 해가 반드시 뜬다는 것을 알기에 완료형으로 씁니다. 이 새벽 예배 자리가 그 자리입니다.</p>
+        <blockquote>조지 허버트: "지난 날 내 기쁨을 눈물로 이끌었던 분 / 이제 내 슬픔을 노래로 이끄는 분."</blockquote>
+      </div>
+      <div class="declaration">침묵 속에서도 헤세드는 작동하고 있다.<br>이미. 후대하심을. 받은. 자다.</div>
+    </div>
+  </details>
 
-  <hr>
+  <!-- PSALM 14 -->
+  <details class="sermon-block" id="psalm-14">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 14편</span>
+        <span class="psalm-date">2026.07.17</span>
+        <span class="psalm-title">나발의 세계에서 이미 피난처를 받은 자</span>
+      </div>
+      <div class="psalm-thesis">세상이 다 나발이 되어도, 하나님은 이미 의인의 피난처가 되셨다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">נָבָל</span>(나발, 실천적 무신론) · <span class="heb">מַחְסֶה</span>(마흐세, 피난처/신뢰하며 안기는 것)</div>
+      <div><span class="series-badge">수동태 시편 시리즈 6편 — 피난처 / 시리즈 완결</span></div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>나발(נָבָל)의 세계</h3>
+        <p>"어리석은 자는 그의 마음에 이르기를 하나님이 없다 하는도다"(v.1). <span class="heb">נָבָל</span>(나발)은 지능의 결핍이 아닙니다. 도덕적·영적 어리석음입니다. 박영식 교수: "실천적 무신론 — 신을 믿지만 실제는 신과 관계없이 살아가는 것." 사무엘상 25장의 나발은 다윗이 하나님의 기름 부음을 받은 자인 것을 알아보려 하지 않았습니다.</p>
+        <p>아서 밀러: "어느 날 고개를 들어보니 법대가 텅 비어 있었다. 판사가 보이질 않더라고." 현대 문명이 걸어온 길입니다. 나발은 먼저 마음에서 하나님을 지웁니다. 판사를 지워야 자신이 판관이 될 수 있기 때문입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>"거기서(שָׁם)" — 피난처의 역전</h3>
+        <p>v.5: "그러나 거기서 그들이 두려워하고 두려워하였으니." <strong>샴(šām)</strong> — "바로 그 자리에서." 나발의 세계 한복판에서 하나님이 계십니다. 지운 줄 알았던 분이 거기 계셨습니다.</p>
+        <p><span class="heb">מַחְסֶה</span>(마흐세): "여호와는 그의 피난처이시로다"(v.6). 어근 하사(ḥāsâ) — 신뢰하여 달려드는 것입니다. 두려울 때 부모 품에 달려드는 아이처럼. 마흐세는 피해서 도달하는 자리가 아닙니다. 이미 있는 자리입니다.</p>
+        <blockquote>시몬 베유: "죄는 빈 구멍을 채우려는 몸부림이다. 하나님이 만들어 두신 구멍을 오직 하나님만 채우실 수 있다."</blockquote>
+      </div>
+      <div class="declaration">나발(נָבָל)의 세계에서도,<br>나는 이미 피난처(מַחְסֶה)이신 하나님을 받은 자다.</div>
+    </div>
+  </details>
 
-  <h2>결론: "거기서", 이미</h2>
-  <p>성도 여러분, 오늘 새벽 이 말씀이 여러분께 드리는 것은 한 가지입니다.</p>
-  <p>세상은 나발이 됩니다. 아니, 이미 많이 되어 있습니다. 마음에서 하나님을 지우고, 판사를 없애고, 각자가 판관이 된 세상. 부패하고 가증한 세상. 서로를 밥 먹듯 삼키는 세상. 여러분이 이 새벽 예배를 마치고 나가는 그 세상이 그런 세상일 수 있습니다.</p>
-  <p>그러나 "거기서(šām)." 바로 그 자리에서 하나님은 의인의 세대에 계십니다. 두려움이 그 증거입니다. <span class="heb">נָבָל</span>(나발)의 세계가 두려워한다는 것은 하나님이 계시다는 뜻입니다. 지운 줄 알았던 분이 거기 계셨습니다.</p>
-  <p>그리고 <span class="heb">מַחְסֶה</span>(마흐세)가 있습니다. 이미. 여러분 곁에 있습니다. 피해서 찾아가는 자리가 아닙니다. 이미 있는 자리입니다. 피난처이신 하나님이 이미 의인의 편이 되셨습니다. 여러분은 피난처를 찾아 나서는 자가 아닙니다. 이미 피난처를 받은 자입니다.</p>
+  <!-- PSALM 15 -->
+  <details class="sermon-block" id="psalm-15">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 15편</span>
+        <span class="psalm-date">2026.07.18</span>
+        <span class="psalm-title">이미 거하심을 입은 자</span>
+      </div>
+      <div class="psalm-thesis">들어올 자격을 묻는 질문이 끝나는 자리에, 이미 들어와 있는 자들이 있다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">תָּמִים</span>(타밈, 흠 없이 온전) · <span class="heb">לֹא יִמּוֹט</span>(로 임못, 영원히 흔들리지 않음—Niphal 수동)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>질문의 방향 전환</h3>
+        <p>"닮아서 자녀입니까, 자녀라서 닮아갑니까." 이것이 시편 15편이 가리키는 방향입니다. "주의 장막에 머물 자 누구오며"(v.1) — 이것은 자격 심사가 아닙니다. 거주자의 초상화입니다. "내가 들어갈 수 있는가"에서 "나는 어떤 사람인가"로 질문이 바뀝니다.</p>
+        <p>9-14편 수동태 시리즈를 기억하십시오. 이미 기억하심 받고, 이미 보심 받고, 이미 지키심 받고, 이미 피난처를 받은 그 사람이 묻습니다. "나는 누구입니까."</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">תָּמִים</span>(타밈): "정직하게(타밈하게) 행하며"(v.2). 레위기에서 속죄 제물의 요건도 타밈입니다. "흠 없는 수컷으로 드릴지니"(레 1:3). 타밈은 인간의 자기 완성이 아닙니다. 타밈이신 예수님이 타밈 제물이 되셨고, 그분 안에서 우리가 타밈하게 됩니다. 선물이 먼저입니다.</p>
+        <p><span class="heb">לֹא יִמּוֹט</span>(로 임못): "영원히 흔들리지 아니하리이다"(v.5b). Niphal 수동형입니다. 내가 흔들리지 않는 것이 아닙니다. 흔들림을 당하지 않는다는 것입니다. 시 16:8 — "내가 여호와를 항상 내 앞에 모심이여 그가 나의 오른쪽에 계시므로 내가 흔들리지 아니하리로다."</p>
+      </div>
+      <div class="sermon-section">
+        <h3>달라스 윌라드와 DNA</h3>
+        <p>달라스 윌라드: "복음주의자들은 회심에는 유능하지만 그 뒤의 인격 변화에는 유능하지 못하다." 시편 15편은 자격 목록이 아닙니다. 장막 안에 이미 들어온 자들의 DNA 목록입니다. 닮아서 자녀가 아닙니다. 자녀라서 닮아갑니다.</p>
+      </div>
+      <div class="declaration">들어올 자격을 묻는 질문이 끝나는 자리에,<br>이미 들어와 있는 자들이 있다. — 이미 거하심을 입은 자다.</div>
+    </div>
+  </details>
 
-  <div class="heart-sentence">나발(<span class="heb">נָבָל</span>)의 세계에서도,<br>나는 이미 피난처(<span class="heb">מַחְסֶה</span>)이신 하나님을 받은 자다.</div>
+  <!-- PSALM 16 -->
+  <details class="sermon-block" id="psalm-16">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 16편</span>
+        <span class="psalm-date">2026.07.21</span>
+        <span class="psalm-title">이미 분깃을 받은 자</span>
+      </div>
+      <div class="psalm-thesis">"주 밖에는 나의 복이 없다" — 이미 분깃을 받은 자의 역설적 충만</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">חֵלֶק</span>(헬레크, 분깃/몫) · <span class="heb">שְׁאוֹל</span>(쉬올, 스올—분깃이 사라지는 곳)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론 — 잔의 역설</h3>
+        <p>비교의 시대입니다. SNS를 열면 남의 잔이 가득합니다. 내 잔은 항상 더 작아 보입니다. 시편 16편 표제는 미크탐(miḵtām) — 다윗이 절박한 위기 속에서 황금같이 새긴 기도입니다. 그 위협 한복판에서 다윗이 붙든 것이 헬레크입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">חֵלֶק</span>(헬레크): "여호와는 나의 산업과 나의 잔의 소득이시니 나의 분깃을 지키시나이다"(v.5). 헬레크의 결정적 등장은 민수기 18:20 — 레위인에게 "나는 이스라엘 자손 중에서 네 분깃이요 네 기업이니라." 레위 지파는 땅이 없습니다. 대신 하나님 자신이 헬레크입니다. 다윗은 왕이면서도 이 레위인의 언어를 차용합니다. 이미 모든 것을 가진 자가, 그 모든 것보다 하나님을 먼저 분깃으로 선언한 것입니다.</p>
+        <p><span class="heb">שְׁאוֹל</span>(쉬올): v.10 — "주께서 내 영혼을 스올에 버리지 아니하시며." 스올은 분깃이 없는 상태 그 자체입니다. 사도행전 2:29-31 — 베드로의 해석: 다윗은 선지자로서 오실 메시아 예수님의 부활을 미리 노래했습니다. 스올을 통과하되 썩지 않으신 그분이 헬레크를 지키셨습니다.</p>
+        <blockquote>제임스 버로우즈: "그리스도와 내 영혼 사이에 충분한 몫이 있다. 외적 위로가 없어도 모든 조건에서 풍성하게 만족케 하는 분깃이 있다."</blockquote>
+        <blockquote>C.S. 루이스: "우리는 더 큰 기쁨을 위해 창조되었는데 찰나의 즐거움에 만족하는 자는, 바닷가 휴가를 제안받고도 판자촌 흙장난을 고집하는 아이와 같다."</blockquote>
+      </div>
+      <div class="declaration">"주 밖에는 나의 복이 없다" — 박탈이 아니다.<br>이미 분깃을 받은 자의 역설적 충만이다.</div>
+    </div>
+  </details>
 
-  <p>시편 9편부터 14편까지, 수동태 시리즈 여섯 편을 함께 달려왔습니다. 오늘이 그 마지막입니다. 이 시리즈 전체가 하나의 고백을 향해 달려왔습니다. 우리는 하나님께 무언가를 드려서 자리를 얻는 자가 아닙니다. 이미 받은 자입니다. 하나님께서 먼저 의인의 피난처가 되셨습니다. 이미. 이 사실이 나발의 세계에서도 우리를 살아내게 합니다.</p>
+  <!-- PSALM 17 -->
+  <details class="sermon-block" id="psalm-17">
+    <summary>
+      <div class="sermon-header-row">
+        <span class="psalm-num">시편 17편</span>
+        <span class="psalm-date">2026.07.22</span>
+        <span class="psalm-title">이미 파님을 받은 자</span>
+      </div>
+      <div class="psalm-thesis">이미 파님을 받은 자는, 깰 때에 그 얼굴로 만족한다</div>
+      <div class="psalm-words">핵심 원어: <span class="heb">פָּנִים</span>(파님, 얼굴/하나님의 임재 자체) · <span class="heb">תְּמוּנָה</span>(테무나, 형상/모습)</div>
+    </summary>
+    <div class="sermon-body">
+      <div class="sermon-section">
+        <h3>서론 — 두 종류의 거울</h3>
+        <p>아침에 거울 앞에 섭니다. 자기 얼굴을 봅니다. 다윗은 달랐습니다. 그는 하나님의 얼굴(파님)을 보고 싶었습니다. "나는 의로운 중에 주의 얼굴을 뵈오리니 깰 때에 주의 형상으로 만족하리이다"(v.15).</p>
+        <p>C.S. 루이스 《스크루테이프》: "하나님 앞에 나아가고는 있지만 정작 그분의 얼굴을 구하고 있지 않는 상태 — 바로 그것이 스크루테이프가 만들어내고자 하는 결과입니다."</p>
+      </div>
+      <div class="sermon-section">
+        <h3>핵심 원어</h3>
+        <p><span class="heb">פָּנִים</span>(파님): 단순한 얼굴이 아닙니다. 하나님의 임재 자체를 가리킵니다. 민 6:25 아론 축도 — "여호와는 그의 얼굴을 네게 비추사 은혜 베푸시기를 원하며." 파님이 드러나는 것이 복이고, 숨기시는 것이 심판입니다. 모세는 파님을 가장 구한 자였고, 요나는 파님을 피한 자였습니다.</p>
+        <p><span class="heb">תְּמוּנָה</span>(테무나): 형상, 모습. "깰 때에 주의 형상으로 만족하리이다." 민 12:8 — 하나님이 모세에게 테무나를 보이심. 욥 19:26 — 욥이 그것을 보고자 했습니다. 테무나는 하나님의 본질적 모습입니다.</p>
+      </div>
+      <div class="sermon-section">
+        <h3>두 가지 만족</h3>
+        <p>v.14 "이생에 분깃이 있는 세상 사람" — 재물·자녀·유산으로 만족합니다. 이 세상 안에서 완결됩니다. 다윗의 만족은 다릅니다. "깰 때에 주의 형상으로 만족하리이다."</p>
+        <blockquote>팀 켈러: "지금까지 경험했던 그 어떤 큰 기쁨도 하나님을 대면해 뵙는 그 환희에 비하면 이슬 방울 정도에 불과하다."</blockquote>
+        <p>복음: 겟세마네에서 예수님의 얼굴이 땅에 닿았습니다. 파님이 가려지던 그 밤. 십자가에서 아버지의 파님이 끊어지셨습니다. 우리 대신. 그러나 부활의 아침, 파님이 다시 드러났습니다. 고후 4:6 — "하나님의 영광을 그리스도의 얼굴에서 볼 수 있느니라." 우리는 이미 파님을 받은 자입니다.</p>
+      </div>
+      <div class="declaration">이 새벽이 "깰 때"다.<br>세상 사람들은 이생 분깃으로 만족하지만,<br>나는 깰 때에 주의 얼굴로 만족한다 — 이미 파님을 받은 자다.</div>
+    </div>
+  </details>
 
-</div>
-</div>
+  <!-- ====== READING SECTION ====== -->
+  <div class="reading-section">
+    <div class="section-title">읽을 거리 — 옵시디언 보관함에서</div>
 
-<!-- ===== 시편 15편 ===== -->
-<div class="tab-panel" id="panel-1">
-<div class="sermon-wrap">
+    <details class="reading-card">
+      <summary>
+        <span class="reading-tag">시편 총론</span>
+        <span class="reading-title">시편 — 인간 영혼의 해부학: 모든 감정이 다 담겨 있음</span>
+      </summary>
+      <div class="reading-body">
+        <p>아타나시우스는 시편을 이렇게 말했습니다. "시편은 영혼의 거울이다. 읽는 자의 감정이 그 안에서 보인다." 칼빈도 같은 언어를 씁니다. "시편은 영혼의 모든 부분들의 해부학이다." 루터는 더 나아갑니다. "시편은 성서 안의 성서다."</p>
+        <p>시편의 장르는 탄식시(70-80%), 찬양시, 감사시로 구성됩니다. 탄식이 가장 많다는 것이 중요합니다. 하나님은 우리가 아름다운 감정만 들고 오기를 원하지 않으십니다. 가장 어두운 감정도, 가장 혼란스러운 마음도 — 그대로 가져오라고 하십니다.</p>
+        <p>시편의 최종 주인공은 다윗이 아닙니다. 다윗을 통해 오신 예수 그리스도입니다. 신약성경에서 시편이 가장 많이 인용됩니다. 시편을 읽는다는 것은 그분의 감정에 참여하는 것입니다. 겟세마네의 탄식, 십자가의 부르짖음, 부활의 찬양 — 시편이 이미 그것을 담고 있었습니다.</p>
+        <p class="reading-source">출처: 옵시디언보관함 / 양진일 시편 강해 노트</p>
+      </div>
+    </details>
 
-  <div class="anchor-tag">Anchor · 닮아서 자녀인가, 자녀라서 닮아가는가</div>
-  <h1 class="sermon-title">이미 거하심을 입은 자</h1>
+    <details class="reading-card">
+      <summary>
+        <span class="reading-tag">영성 · 기도</span>
+        <span class="reading-title">하나님의 얼굴을 구하라 — 하나님과 연합하고 영광을 즐거워 하라</span>
+      </summary>
+      <div class="reading-body">
+        <p>칼빈은 말했습니다. "누림은 그리스도와의 연합에서만 가능하다." 하나님의 얼굴을 구하는 것(파님)은 단순한 종교적 행위가 아닙니다. 그것은 연합을 향한 갈망입니다.</p>
+        <p>파스칼은 1654년 11월 23일 밤, 불 같은 체험을 기록했습니다. "아브라함의 하나님, 이삭의 하나님, 야곱의 하나님. 철학자들과 학자들의 하나님이 아니다. 확신. 확신. 감각. 기쁨. 평화." 그는 이것을 양피지에 써서 죽을 때까지 옷 안에 품고 다녔습니다. 파님을 만난 자의 반응이었습니다.</p>
+        <p>존 오웬은 《그리스도의 영광》에서 말합니다. "그리스도의 얼굴에 나타난 하나님의 영광을 묵상하는 것 — 이것이 우리가 지금 할 수 있는 가장 거룩한 활동이다." 파님을 구하는 것은 사치가 아닙니다. 영혼이 숨 쉬는 것입니다.</p>
+        <p>아우구스티누스: "주님, 당신은 우리를 당신을 위해 만드셨으므로, 우리 마음은 당신 안에 안식하기까지 불안합니다." 파님 이외의 것에서 안식을 찾는 모든 시도는 결국 안달로 귀결됩니다.</p>
+        <p class="reading-source">출처: 옵시디언보관함 / 영성·기도 노트</p>
+      </div>
+    </details>
 
-  <div class="sermon-meta">
-    <div class="date">2026년 7월 18일 (토) 평일새벽설교</div>
-    <div class="scripture">시편 15:1-5</div>
-    <div class="thesis">들어올 자격을 묻는 질문이 끝나는 자리에, 이미 들어와 있는 자들이 있다</div>
-    <div class="keywords">핵심 원어: <span class="heb">תָּמִים</span>(타밈) · <span class="heb">לֹא יִמּוֹט</span>(로 임못)</div>
-  </div>
+    <details class="reading-card">
+      <summary>
+        <span class="reading-tag">고난 · 신앙</span>
+        <span class="reading-title">하나님이 안 보이는 순간에도, 하나님은 나를 빚으심</span>
+      </summary>
+      <div class="reading-body">
+        <p>C.S. 루이스는 《스크루테이프의 편지》에서 인간의 영적 생애에 나타나는 파동(undulation) 이론을 설명합니다. 우리의 신앙은 항상 오르락내리락합니다. 은혜의 고점이 있으면 반드시 저점이 옵니다. 루이스가 스크루테이프의 입을 빌어 말합니다. "하강 곡선이 우리가 일할 시간이다."</p>
+        <p>그런데 역설이 있습니다. 하나님은 바로 그 하강 곡선을 사용하십니다. 빚으시는 시간으로. 욥 23:8-10 — "내가 앞으로 가도 그가 아니 계시고 뒤로 가도 보이지 아니하며… 그러나 내가 가는 길을 그가 아시나니 그가 나를 단련하신 후에는 내가 순금같이 되어 나오리라."</p>
+        <p>하나님의 침묵은 부재가 아닙니다. 도공의 손이 진흙에 닿아 있지만, 진흙은 도공의 얼굴을 볼 수 없습니다. 느끼는 것은 압력뿐입니다. 그러나 그 압력이 형태를 만들고 있습니다. 시편 10, 13편의 침묵 속에서도, 하나님의 손은 여전히 우리를 빚고 계십니다.</p>
+        <p class="reading-source">출처: 옵시디언보관함 / 고난·신앙 노트 (C.S. 루이스 파동 이론)</p>
+      </div>
+    </details>
 
-  <hr>
+    <details class="reading-card">
+      <summary>
+        <span class="reading-tag">스크루테이프</span>
+        <span class="reading-title">영혼 분산 전략 — 스크루테이프 마무리</span>
+      </summary>
+      <div class="reading-body">
+        <p>C.S. 루이스 《스크루테이프의 편지》 마지막 편지에서, 스크루테이프는 핵심 전략을 드러냅니다. "하나님을 기억하지 못하게 하면 충분하다. 그들을 죄짓게 만들 필요조차 없다. 단지 분산(distraction)시키면 된다."</p>
+        <p>악마의 가장 효율적인 무기는 큰 유혹이 아닙니다. 작은 분산입니다. 뉴스, SNS, 소음. 그것이 파님(얼굴)을 가립니다. 시편 17편의 스크루테이프 인용이 정확히 이것을 지적합니다 — 예배하면서도 하나님의 얼굴을 구하지 않는 상태.</p>
+        <p>스크루테이프의 고백: "지옥으로 가는 길은 급격한 내리막이 아니다. 그것은 완만하고 편안한 길이다. 급격한 굽이도 이정표도 없다." 신앙이 무너지는 것은 드라마틱한 배교로 시작되지 않습니다. 파님을 구하지 않는 무감각에서 시작됩니다.</p>
+        <p>대안은 단 하나입니다. 이 새벽 예배 자리처럼, 분산된 시선을 거두고 다시 파님을 구하는 것. 그것이 영혼 분산 전략에 대한 유일한 저항입니다.</p>
+        <p class="reading-source">출처: 옵시디언보관함 / 스크루테이프 편지 마무리 노트</p>
+      </div>
+    </details>
 
-  <h2>서론: 피난처에서 집으로</h2>
-  <p>어제 우리는 시편 14편을 묵상했습니다. 나발의 세계. 하나님이 없다고 선언하는 세계. 의인은 없고 선을 행하는 자도 없다는 진단. 그러나 14편이 마지막에 무엇을 말했습니까. "야곱의 하나님이 마흐세이시로다." 마흐세. 피난처. 나발의 세계 한복판에서도 하나님이 피난처가 되신다는 선언이었습니다.</p>
-  <p>오늘 시편 15편이 열립니다. 마흐세에서 장막으로. 피난처에서 집으로. 임시 대피처에서 영구 거주지로. 이것이 오늘 본문의 이동입니다.</p>
-  <p>저는 이 본문을 준비하면서 솔직히 한 가지 질문 앞에서 오래 머물렀습니다. 나발 같은 사람이 지금 이 새벽에 앉아 이 말씀을 듣고 있다는 것. 이것이 기적이 아닌가 하는 생각이 들었습니다. 저 자신도 그런 삶을 살아왔는데, 지금 이 장막 안에 있다는 것. 어떻게 된 일인가. 무슨 자격으로 내가 여기 있는가.</p>
-  <p>여기서 달라스 윌라드의 날카로운 지적이 생각납니다. "복음주의자들은 회심에는 유능하지만 그 뒤의 인격 변화에는 유능하지 못하다." 우리는 들어오는 문은 알고 있습니다. 어떻게 장막 안으로 들어오는지는 압니다. 그런데 들어온 뒤 어떻게 살아야 하는가. 거기서 막힙니다.</p>
-  <p>시편 15편은 바로 그 자리를 다루는 것처럼 보입니다. 그런데 오늘 저는 이 본문을 조금 다른 방향에서 읽어보려 합니다.</p>
-  <p>한 가지 질문을 드립니다. 닮아서 자녀입니까, 자녀라서 닮아갑니까.</p>
-  <p>이것이 오늘 본문이 가리키는 방향입니다. 오늘 우리가 붙들 논제는 이것입니다.</p>
-  <blockquote><p>"들어올 자격을 묻는 질문이 끝나는 자리에, 이미 들어와 있는 자들이 있다."</p></blockquote>
+    <details class="reading-card">
+      <summary>
+        <span class="reading-tag">다윗의 삶</span>
+        <span class="reading-title">삼상 24-25장 — 복수 대신 믿음을 선택한 다윗과 아비가일</span>
+      </summary>
+      <div class="reading-body">
+        <p>사무엘상 25장의 나발은 시편 14편 주석의 살아있는 예화입니다. 그는 재물이 있었습니다. 다윗이 사람을 보내어 도움을 청했을 때, 그는 말했습니다. "다윗이 누구냐. 이새의 아들이 누구냐." 하나님이 기름 부으신 자를 알아보려 하지 않은 것 — 그것이 나발입니다.</p>
+        <p>다윗은 분노했습니다. 칼을 차고 나발을 치러 가려 했습니다. 그때 아비가일이 나왔습니다. 나귀에 음식을 싣고, 나발 모르게 다윗에게 나아갔습니다. 그녀는 말했습니다. "내 주의 원수들과 내 주를 해하려 하는 자들은 나발처럼 되기를 원하나이다."</p>
+        <p>다윗이 돌아섰습니다. "오늘 당신이 나를 막지 아니하였더면 내가 정녕코 나발을 쳤을 것이라." 하나님의 때를 기다리는 것 — 그것이 시편 9편 기억하심(자카르)의 실천이었습니다. 하나님이 기억하시기 때문에, 내가 먼저 갚지 않아도 됩니다.</p>
+        <blockquote>존 오웬: "정욕은 영혼의 평화와 힘을 빼앗는다. 복수의 충동을 하나님 앞에 내려놓는 것이 영적 훈련이다."</blockquote>
+        <p class="reading-source">출처: 옵시디언보관함 / 삼상 24-25장 강해 노트</p>
+      </div>
+    </details>
 
-  <hr>
+    <details class="reading-card">
+      <summary>
+        <span class="reading-tag">신학 · 변증</span>
+        <span class="reading-title">무신론에 대한 이해 — 실천적 무신론에서 시편 14편까지</span>
+      </summary>
+      <div class="reading-body">
+        <p>박영식 교수(서울신학대학교)는 무신론을 네 가지로 분류합니다. ①실천적 무신론(일상에서 신 없이 사는 것), ②일상적 무신론(신앙을 갖되 일상에서 적용 안 함), ③허무주의적 무신론(의미 자체를 부정), ④이론적 무신론(학문적 신 부정). 이 중 가장 광범위한 것이 실천적 무신론입니다.</p>
+        <p>루터 대교리문답 1문답: "하나님이란 무엇인가? 네 마음이 신뢰하고 의지하는 것이다." 이 정의에 따르면, 입으로는 하나님을 고백하면서 실제로는 돈, 명예, 안전을 신뢰하는 자는 이미 실천적 무신론자입니다.</p>
+        <p>포이어바흐는 말했습니다. "신은 인간이 자신의 최선을 투영한 존재다." 프로이트는 "신은 어린 시절 아버지 이미지의 투영"이라 했습니다. 마르크스는 "종교는 민중의 아편"이라 했습니다. 이 모든 종교 비판의 공통점은 — 하나님을 인간의 산물로 환원하는 것입니다. 그것이 이론적 나발입니다.</p>
+        <p>도킨스의 과학주의 무신론에 대한 응답: 과학은 어떻게(how)를 설명하지만, 왜(why)는 설명하지 못합니다. 시편 8편의 에노쉬가 우주 먼지에 불과하다고 해도 — 왜 우주 먼지가 별을 보며 아름답다고 느끼는지, 과학은 대답하지 못합니다. 그 감수성 자체가 하나님의 형상 흔적입니다.</p>
+        <p class="reading-source">출처: 옵시디언보관함 / 박영식 교수 무신론 강의 노트</p>
+      </div>
+    </details>
 
-  <h2>본론 1. 질문의 방향을 바꾸다 (v.1)</h2>
-  <blockquote><p>"여호와여 주의 장막에 머물 자 누구오며 주의 성산에 사는 자 누구오니이까."</p></blockquote>
-  <p>이 절은 고대 이스라엘의 입장 리투르기(entrance liturgy)에서 왔습니다. 순례자가 성전 문 앞에 서면 문지기가 묻습니다. "당신은 누구입니까. 당신은 이 안에 들어올 수 있는 사람입니까." 그러면 순례자가 자신의 삶을 선언하며 응답합니다. 그것이 v.2-5의 내용입니다.</p>
-  <p>여기서 핵심 단어를 봅니다. "머물 자." 히브리어로 야구르(yāgûr)입니다. 잠깐 들르는 방문자가 아닙니다. 거주자. 상주자. 집에 사는 사람. 일시적 체류가 아니라 주소지를 둔 사람입니다.</p>
-  <p>9편부터 14편까지 무슨 일이 있었는지 기억하십니까. 9편에서 "여호와는 피할 곳이 되어 주시고"(9:9). 10편에서 "주는 이미 보셨나이다"(10:14). 11편에서 "여호와의 눈은 의인을 보신다"(11:7). 12편에서 "여호와께서 그를 지키시리이다"(12:7). 13편에서 "나는 주의 인자하심을 의뢰하였으며 주의 구원을 기뻐하리이다"(13:5). 14편에서 "야곱의 하나님이 마흐세이시로다"(14:6).</p>
-  <p>이미 기억하심을 받았습니다. 이미 보심을 받았습니다. 이미 지키심을 받았습니다. 이미 후대하심을 받았습니다. 이미 피난처를 받았습니다. 그 사람이 이제 묻습니다. "나는 누구입니까. 나는 어디에 삽니까."</p>
-  <p>이것은 자격 심사가 아닙니다. 거주자의 초상화입니다. "내가 들어갈 수 있는가"가 아니라 "나는 어떤 사람인가"로 질문의 방향이 바뀝니다. v.2-5는 장막에 사는 사람의 DNA를 보여주는 것입니다.</p>
-  <p>이 DNA는 세 영역으로 나뉩니다. v.2-3은 내면과 언어입니다. v.4는 관계입니다. v.5는 경제입니다. 내면과 언어부터 봅니다.</p>
+  </div><!-- /.reading-section -->
 
-  <hr>
+</div><!-- /.container -->
 
-  <h2>본론 2. 장막 식구의 DNA: 내면·언어 (v.2-3)</h2>
-  <blockquote><p>"정직하게 행하며 공의를 실천하며 그의 마음에 진실을 말하며."</p></blockquote>
-  <p>"정직하게 행하며." 원문을 보면 첫 단어는 홀렉(hōlek), '걷는 자'입니다. 그리고 이 단어가 나옵니다. <span class="heb">תָּמִים</span>(타밈, tamim). 흠 없이 온전하게.</p>
-  <p>성도 여러분, 저는 이 단어 앞에서 멈춥니다. 솔직히 말씀드립니다. 타밈한 하루를 살 자신이 없습니다. 아침에 눈을 뜨면서 오늘 하루 흠 없이 살겠다고 다짐하지만, 저녁이 되면 어김없이 무너져 있습니다. 말에서, 생각에서, 관계에서. 타밈. 어떻게 이것이 가능합니까.</p>
-  <p>여기서 개혁주의 신학의 통찰이 빛납니다. 시편 15편이 제시하는 타밈의 기준은 인간이 스스로 달성할 수 없는 요건입니다. 이 목록은 율법주의적 자격 조건이 아닙니다. 오히려 완전한 중보자의 필요성을 드러내는 거울입니다. 타밈이 요구될 때, 우리는 '아무도 없다'는 것을 압니다. 그 '아무도 없다'는 진단이 — 다른 한 분을 향해 시선을 돌리게 합니다. 인간의 불가능성이 그분의 필요성을 열어줍니다.</p>
-  <p>그런데 이 단어를 레위기에서도 만납니다. 속죄 제물의 요건이 타밈입니다. "흠 없는 수컷으로 드릴지니"(레 1:3). 제단에 올려지는 제물은 반드시 타밈해야 했습니다. 왜 그런가. 참 타밈이신 분이 오실 것을 예표했기 때문입니다. 흠 없는 제물은 흠 없으신 그분을 가리키고 있었습니다. 그분이 오셔서 마침내 제물이 되셨습니다.</p>
-  <p>여기서 연결이 생깁니다. 거주자의 특징도 타밈. 속죄 제물의 요건도 타밈. 우리가 타밈한 삶을 향해 걸어갈 수 있는 것은 참 타밈이신 분이 우리 대신 제물이 되셨기 때문입니다. 타밈이 우리에게 요구사항으로 오기 전에, 먼저 선물로 왔습니다. "이미." 그렇습니다.</p>
-  <p>"그의 마음에 진실을 말하며"(v.2b). 코람데오(coram Deo). 하나님의 얼굴 앞에서. 마음에 진실을 말한다는 것은 하나님의 임재 안에서 말한다는 것입니다. 리처드 마우는 이렇게 말했습니다. "어떤 말도 하나님의 귓전을 지나칠 수 없다. 우리는 코람데오 — 하나님의 얼굴 앞에서 산다." 내가 혼자 중얼거리는 말도, 운전하면서 무심코 뱉은 말도, 아무도 듣지 않는다고 생각한 그 말도. 모두 하나님의 귓전을 지납니다. 마음에 진실을 말한다는 것은 그 사실을 알고 사는 것입니다.</p>
-  <p>v.3. "그의 혀로 남을 허물하지 아니하고." 혀. 언어의 절제입니다. 이성호 교수가 날카롭게 말했습니다. "사실일 수 있어도 진실이 아닐 수 있다." 맞는 말을 했는데 진실이 아닐 수 있다는 것. 혀의 절제는 틀린 말을 하지 않는 것이 아닙니다. 이 말이 지금 이 사람 앞에서 진실한 말인가, 를 묻는 것입니다. 코람데오 안에서 말한다면 그 물음을 피할 수 없습니다.</p>
-  <p>성도 여러분, 이것이 자격 목록입니까. 아닙니다. 하나님 집 식구의 DNA입니다. "DNA입니다. 자격이 아닙니다."</p>
-
-  <hr>
-
-  <h2>본론 3. 장막 식구의 DNA: 관계 (v.4)</h2>
-  <blockquote><p>"그의 눈은 망령된 자를 멸시하며 여호와를 두려워하는 자들을 존대하며 그의 이웃에게 해를 끼치지 아니하며."</p></blockquote>
-  <p>두 가지가 대비됩니다. 망령된 자를 멸시한다. 경외하는 자를 존대한다. 이것은 세상의 가치 기준과 정면으로 충돌합니다. 세상은 권력 있는 자, 돈 있는 자, 연줄 있는 자를 존대합니다. 장막 거주자는 다릅니다. 여호와를 경외하는가 아닌가로 사람을 봅니다.</p>
-  <p>그런데 그다음에 이 구절이 나옵니다. "해를 받을지라도 변하지 아니하며"(v.4b). 성도 여러분, 저는 이것이 가장 어렵습니다. 솔직히 말씀드리면 못 지킬 때가 있습니다. 약속을 했는데 지키면 내가 손해입니다. 그때 저는 흔들립니다. 상황이 바뀌었다고, 그때와 지금이 다르다고, 변명을 찾습니다.</p>
-  <p>왜 그런가. 내 것을 지키려는 마음이 한 말보다 더 크기 때문입니다.</p>
-  <p>그런데 여기서 십자가가 보입니다. 해를 받으셨어도 변하지 않으신 분. 예수님이십니다. 그분은 자기 백성을 사랑하시되 끝까지 사랑하셨습니다(요 13:1). 잡히실 것을 아셨습니다. 십자가가 기다리고 있는 것을 아셨습니다. 가롯 유다가 배반할 것을 아셨습니다. 그럼에도 변하지 않으셨습니다. 해를 받으셨어도, 끝까지.</p>
-  <p>장막 거주자의 관계 DNA는 여기서 옵니다. 내가 이분을 닮으려고 애쓰는 것이 아닙니다. 이분 안에 있기 때문에 그 DNA가 내 안에서도 작동하기 시작합니다. 이미.</p>
-
-  <hr>
-
-  <h2>본론 4. 장막 식구의 DNA: 경제·선언 (v.5)</h2>
-  <blockquote><p>"이자를 받으려고 돈을 꾸어 주지 아니하며 뇌물을 받고 무죄한 자를 해하지 아니하는 자이니."</p></blockquote>
-  <p>이자와 뇌물. 이것은 경제 이익이 형제 관계보다 앞서지 않는다는 것입니다. 구약의 이자 금지는 형제에게 적용되는 것이었습니다. 형제가 어려울 때 그 어려움을 돈벌이의 기회로 삼지 않는다. 이것이 장막 거주자의 경제 DNA입니다. 돈이 관계를 이기지 않는다.</p>
-  <p>그리고 v.5b. "이런 일을 행하는 자는 영원히 흔들리지 아니하리이다."</p>
-  <p>히브리어로 <span class="heb">לֹא יִמּוֹט</span>(로 임못, lo yimmot). "영원히 흔들리지 않음."</p>
-  <p>이 동사의 문법이 중요합니다. Niphal 수동형입니다. 내가 흔들리지 않는 것이 아닙니다. 흔들림을 당하지 않는다는 것입니다. 수동입니다. 외부의 어떤 힘이 와도, 이 사람을 흔들 수 없다는 선언입니다.</p>
-  <p>왜 그런가. 시편 16편 8절이 대답합니다. "내가 여호와를 항상 내 앞에 모심이여 그가 나의 오른쪽에 계시므로 내가 흔들리지 아니하리로다." 다윗이 흔들리지 않는 이유는 다윗이 강하기 때문이 아닙니다. 여호와께서 오른쪽에 계시기 때문입니다. 그분이 붙들고 계시기 때문입니다.</p>
-  <p>흔들리지 않는 것은 내 완전함 때문이 아닙니다. 흔들리지 않으신 분 안에 있기 때문입니다.</p>
-  <p>그런데 여기서 한 걸음 더 나아가겠습니다. "이런 일을 행하는 자." 이 사람이 누구입니까. <span class="heb">תָּמִים</span>(타밈)하게 걸으며, 코람데오로 마음에 진실을 말하며, 혀를 절제하며, 망령된 자를 멸시하고 경외하는 자를 존대하며, 해를 받아도 변하지 않으며, 이자와 뇌물을 거부하는 자. 이 모든 것을 완전히 이루신 분이 계십니다. 예수님이십니다.</p>
-  <blockquote><p>"이런 일을 행하는 자 — 이 사람이 예수님이십니다. 그리고 그분 안에 있는 우리에게 이 선언이 주어집니다."</p></blockquote>
-
-  <hr>
-
-  <h2>복음 4단계</h2>
-  <p><strong>첫째, 다 이루심.</strong> 예수님이 시편 15편의 모든 요건을 완성하셨습니다. 흠 없는 제물로 오셨습니다. 타밈한 삶을 사셨습니다. 해를 받으셨어도 변하지 않으셨습니다. 형제에게 이자를 취하지 않으셨습니다. 오히려 자신을 내어주셨습니다. 그리고 "다 이루었다"(요 19:30) 하시고, 우리 대신 장막 밖으로 나가셨습니다.</p>
-  <p><strong>둘째, 우리에게 주심.</strong> 그 완성이 우리 것이 됩니다. 우리가 그분을 믿는 순간, 주소지가 바뀝니다. 장막 밖에서 안으로. "주소지가 그분 안으로 이사 갑니다." 그분의 타밈이 우리의 의가 됩니다. 그분의 로 임못이 우리의 선언이 됩니다. 우리가 타밈해서가 아닙니다. 타밈하신 분 안에 있기 때문입니다.</p>
-  <p><strong>셋째, 우리도 할 수 있음.</strong> 그 안에 있는 사람에게 DNA가 작동하기 시작합니다. 타밈을 향해 걸어갑니다. 완벽하지 않아도 방향이 생깁니다. 여기서 한 가지를 말씀드립니다. 오늘 이 말씀 앞에서 마음이 찔린다면, 그것은 살아있다는 증거입니다. 죽은 DNA는 찔리지 않습니다. 이 본문이 불편하게 느껴진다면, 그 불편함이 내 안에서 DNA가 살아 움직이고 있다는 신호입니다.</p>
-  <p><strong>넷째, 주님께서 이루심.</strong> 빌립보서 1장 6절. "너희 안에서 착한 일을 시작하신 이가 그리스도 예수의 날까지 이루실 줄을 우리는 확신하노라." 내가 이루는 것이 아닙니다. 시작하신 분이 이루십니다. 그분이 내 안에서 타밈을 이루어 가십니다. 로 임못을 선물로 주십니다.</p>
-
-  <hr>
-
-  <h2>결론: 닮아서 자녀가 아닙니다</h2>
-  <p>성도 여러분, 서론에서 드린 질문으로 돌아갑니다. 닮아서 자녀입니까, 자녀라서 닮아갑니까.</p>
-  <p>시편 15편은 '이렇게 살아야 장막 안으로 들어올 수 있다'는 말씀이 아닙니다. '장막에 이미 들어온 자는 이런 삶을 살아간다'는 말씀입니다. 이것이 방향을 바꿉니다. 자격 심사에서 가족의 초상화로. 입장 기준에서 거주자의 DNA로.</p>
-  <p>여러분이 오늘 이 새벽에 이 자리에 앉아 있다는 것. 그것이 이미 증거입니다. 나발이 여기 앉아 있습니다. 그런데 이미 장막 안에 있습니다. 이것이 어떻게 된 일인지, 우리는 압니다. 그분이 먼저 들어오셨습니다. 그분이 먼저 우리를 들어오게 하셨습니다.</p>
-  <p>닮아서 자녀가 아닙니다. 자녀라서 닮아갑니다. 시편 15편은 자격 목록이 아닙니다. 우리 가족의 DNA 목록입니다.</p>
-
-  <div class="heart-sentence">이미 거하심을 입은 자</div>
-
-  <p>여러분은 이미 장막 안에 있습니다. 이미. 그렇습니다.</p>
-
-</div>
-</div>
-
-<!-- ===== 시편 16편 ===== -->
-<div class="tab-panel" id="panel-2">
-<div class="sermon-wrap">
-
-  <div class="anchor-tag">Anchor · 잔(v.5) — 비교의 시대</div>
-  <h1 class="sermon-title">이미 분깃을 받은 자</h1>
-
-  <div class="sermon-meta">
-    <div class="date">2026년 7월 21일 (월) 평일새벽설교</div>
-    <div class="scripture">시편 16:1-11</div>
-    <div class="thesis">주 밖에는 나의 복이 없다 — 이것은 박탈이 아니라, 이미 분깃을 받은 자의 역설적 충만이다</div>
-    <div class="keywords">핵심 원어: <span class="heb">חֵלֶק</span>(헬레크) · <span class="heb">שְׁאוֹל</span>(쉬올)</div>
-  </div>
-
-  <div class="scripture-block">
-    <sup>1</sup> 하나님이여 나를 지켜 주소서 내가 주께 피하나이다<br>
-    <sup>2</sup> 내가 여호와께 아뢰되 주는 나의 주님이시오니 주 밖에는 나의 복이 없다 하였나이다<br>
-    <sup>3</sup> 땅에 있는 성도들은 존귀한 자들이니 나의 모든 기쁨이 그들에게 있도다<br>
-    <sup>4</sup> 다른 신에게 예물을 드리는 자들은 괴로움이 더할 것이라 나는 그들이 드리는 피의 전제를 드리지 아니하며 내 입술로 그 이름도 부르지 아니하리로다<br>
-    <sup>5</sup> 여호와는 나의 산업과 나의 잔의 소득이시니 나의 분깃을 지키시나이다<br>
-    <sup>6</sup> 내게 줄로 재어 준 구역은 아름다운 곳에 있음이여 나의 기업이 실로 아름답도다<br>
-    <sup>7</sup> 나를 훈계하신 여호와를 송축할지라 밤마다 내 양심이 나를 교훈하도다<br>
-    <sup>8</sup> 내가 여호와를 항상 내 앞에 모심이여 그가 나의 오른쪽에 계시므로 내가 흔들리지 아니하리로다<br>
-    <sup>9</sup> 이러므로 나의 마음이 기쁘고 나의 영도 즐거워하며 내 육체도 안전히 살리니<br>
-    <sup>10</sup> 이는 주께서 내 영혼을 스올에 버리지 아니하시며 주의 거룩한 자를 멸망시키지 않으실 것임이니이다<br>
-    <sup>11</sup> 주께서 생명의 길을 내게 보이시리니 주의 앞에는 충만한 기쁨이 있고 주의 오른쪽에는 영원한 즐거움이 있나이다
-  </div>
-
-  <hr>
-
-  <h2>서론: 남의 잔을 보며 내 잔이 작아 보이는 아침</h2>
-  <p>사랑하는 성도 여러분.</p>
-  <p>잔 하나를 상상해 보십시오. 지금 여러분의 손에 들린 잔입니다. 그 잔이 얼마나 차 있습니까.</p>
-  <p>저는 이런 날이 있었습니다. 분명히 하나님이 주신 것들이 있는데, 옆 사람의 잔과 비교하는 순간 내 잔이 너무 작아 보이는 날. 누군가는 더 좋은 자리에 있고, 누군가는 더 많은 것을 가졌고, 누군가의 잔은 넘쳐흐르는데 내 잔은 금방이라도 바닥이 날 것 같은 그 느낌. 여러분도 아십니까.</p>
-  <p>지금 우리는 비교가 공기처럼 가득한 시대를 삽니다. SNS를 열면 남의 잔이 가득합니다. 그 잔들과 내 잔을 견주는 순간, 내 잔은 항상 더 작아 보입니다. 항상 더 비어 보입니다. 이 묘한 공허감. 여러분은 알고 계십니까.</p>
-  <p>바로 이 자리에서 시편 16편이 말을 걸어옵니다.</p>
-  <p>시편 15편을 기억하십니까. 다윗은 물었습니다. "여호와의 장막에 머물 자가 누구입니까." 그리고 타밈(tamim)의 삶, 로 임못(lo yimmot)의 흔들리지 않는 터전을 노래했습니다. 그런데 여기서 한 가지 질문이 남습니다. 어떻게 그 삶이 가능합니까. 그 흔들리지 않는 삶의 뿌리는 어디서 옵니까. 시편 16편이 그 답을 줍니다. 헬레크(ḥēleq), 곧 분깃입니다.</p>
-  <p>이 시편의 표제를 보십시오. 미크탐(miḵtām). 많은 학자들이 이것을 다윗이 절박한 위기 상황에서 새긴 기도라고 봅니다. 황금같이 새긴 고백. 저도 솔직히 말씀드리겠습니다. 저는 미크탐이라는 표제 앞에서 묘하게 위로를 받습니다. 다윗도 두려웠다는 것. 이것이 서재의 여유에서 나온 글이 아니라, 위협 앞에서 새긴 신앙의 흔적이라는 것. 그 두려움 한복판에서 다윗이 붙든 것이 무엇인지, 오늘 함께 들어가겠습니다.</p>
-  <blockquote><p><strong>오늘 논제:</strong> "주 밖에는 나의 복이 없다"는 말은 가장 적게 가진 자의 말이 아닙니다. 이미 가장 많이 받은 자의 선언입니다. 박탈이 아닙니다. 선언입니다.</p></blockquote>
-
-  <hr>
-
-  <h2>본론 1. 피신과 선언 — v.1-4</h2>
-  <blockquote><p>"하나님이여 나를 지켜 주소서 내가 주께 피하나이다." (v.1)</p></blockquote>
-  <p>첫 단어가 '피하나이다'입니다. 원어로 마흐세(maḥseh). 피난처로 달려감입니다. 피신. 도피입니까. 아닙니다. 방향 전환입니다.</p>
-  <p>아우구스티누스는 이렇게 말했습니다.</p>
-  <blockquote><p>"세상에 의지할 이가 없으며 절망뿐이라는 고백 전에는 진짜 기도가 없다."</p></blockquote>
-  <p>저도 그것을 압니다. 제가 경험한 가장 진지한 기도는 항상 내가 얼마나 무너지기 쉬운 존재인지를 먼저 알았을 때 나왔습니다. 마흐세는 내 무력함이 하나님을 향해 돌아선 바로 그 순간입니다. 진짜 기도는 거기서 시작됩니다.</p>
-  <p>그리고 v.2에서 선언이 터집니다.</p>
-  <blockquote><p>"주는 나의 주님이시오니 주 밖에는 나의 복이 없다 하였나이다."</p></blockquote>
-  <p>이것을 처음 들으면 어떻게 들리십니까. 얼마나 가진 게 없으면 저런 말을 할까. 그렇게 들릴 수 있습니다. 빈곤의 탄식처럼 들릴 수 있습니다.</p>
-  <p>그러나 그것은 이 시편을 아직 끝까지 읽지 않은 것입니다. 이 선언이 박탈인지 충만인지는 v.5-6이 밝혀줍니다. 잠시 후에 그 답이 옵니다.</p>
-  <p>v.3-4에서 다윗은 두 공동체를 대조합니다. 땅에 있는 성도들, 존귀한 자들 — 내 모든 기쁨이 그들에게 있습니다. 반면 다른 신에게 예물을 드리는 자들의 길에서는 돌아섭니다. 마흐세는 단순히 두려움에서 피하는 것이 아닙니다. 무엇으로부터 돌아서고, 무엇을 향해 걸어갈지를 선택하는 것입니다.</p>
-
-  <hr>
-
-  <h2>본론 2. <span class="heb">חֵלֶק</span>(헬레크) — 이미 받은 분깃 (v.5-6)</h2>
-  <blockquote><p>"여호와는 나의 산업과 나의 잔의 소득이시니 나의 분깃을 지키시나이다." (v.5)</p></blockquote>
-  <p>여기서 '분깃'에 해당하는 히브리어가 <span class="heb">חֵלֶק</span>(헬레크, ḥēleq)입니다. '몫', '할당된 부분'을 뜻합니다. 이 단어가 구약 전체에서 가장 결정적으로 쓰인 곳이 어디인지 아십니까. 민수기 18장 20절입니다.</p>
-  <blockquote><p>"여호와께서 또 아론에게 이르시되 너는 그들의 땅에서 기업을 얻지 못하며 그들 중에 아무 분깃도 없을 것이요 나는 이스라엘 자손 중에서 네 분깃이요 네 기업이니라."</p></blockquote>
-  <p>레위인에게 하신 말씀입니다. 레위 지파는 가나안 땅 분배에서 제외되었습니다. 땅이 없습니다. 그 대신 무엇을 받았습니까. 여호와 자신이 그들의 헬레크였습니다. 그 분깃이 땅보다 작습니까. 비교 자체가 불가능합니다. 땅은 사라질 수 있지만, 하나님은 사라지시지 않습니다.</p>
-  <p>그런데 다윗이 이 레위인의 언어를 자기 입으로 가져옵니다. 왕입니다. 다윗은 이스라엘을 다스리는 왕입니다. 왕에게는 땅도 있고 금도 있고 군대도 있습니다. 그런데 왕이 레위인의 고백을 합니다. "여호와는 나의 헬레크입니다." 이것이 얼마나 충격적인 신학적 선택인지 아십니까. 이미 모든 것을 가진 자가, 그 모든 것보다 하나님을 먼저 자기 분깃으로 선언한 것입니다.</p>
-  <p>개혁신학은 이 헬레크 언어를 언약 신학의 정수로 읽습니다. 헬레크는 단순한 토지 분배의 용어가 아닙니다. "나는 너의 하나님이 되고 너는 나의 백성이 될 것이다"(출 6:7)라는 언약의 말씀이 헬레크라는 단어로 압축됩니다. 하나님 자신이 그 백성의 헬레크가 되신다는 것은 — 모든 물질적 상속을 초월하는 관계의 친밀성입니다. 땅은 언젠가 빼앗길 수 있지만, 이 언약의 헬레크는 빼앗기지 않습니다.</p>
-  <p>그리고 바로 여기서 서론의 잔이 돌아옵니다. "나의 잔의 소득." 잔 안에 담긴 것. 다윗의 잔 안에는 야훼가 계십니다. 비어 보이는 그 잔 안에, 하나님이 계십니다. 그것이 다윗의 분깃이었습니다.</p>
-  <p>청교도 신학자 제임스 버로우즈(Jeremiah Burroughs)는 이렇게 말했습니다.</p>
-  <blockquote><p>"그리스도와 내 영혼 사이에 충분한 몫이 있다. 외적 위로가 없어도 모든 조건에서 풍성하게 만족케 하는 분깃이 있다."</p></blockquote>
-  <p>이것입니다. 헬레크는 조건이 좋아질 때 채워지는 것이 아닙니다. 조건 너머에서 이미 충만한 것입니다. 이미 받은 것입니다. 그렇습니다.</p>
-  <p>v.6을 보십시오.</p>
-  <blockquote><p>"내게 줄로 재어 준 구역은 아름다운 곳에 있음이여 나의 기업이 실로 아름답도다."</p></blockquote>
-  <p>줄로 재어 준 구역. 경계입니다. 한계입니다. 남들보다 작아 보일 수 있는 자리입니다. 그런데 그 구역이 아름답다고 합니다. 왜 그런가. 그 안에 하나님이 계시기 때문입니다. 빈 자리가 아름다운 역설입니다. 이미 헬레크를 받은 자는, 경계가 제한이 아니라 은혜임을 압니다.</p>
-
-  <hr>
-
-  <h2>본론 3. <span class="heb">שְׁאוֹל</span>(쉬올) — 분깃을 빼앗으려는 자리 (v.7-11)</h2>
-  <p>v.7-8을 보십시오.</p>
-  <blockquote><p>"나를 훈계하신 여호와를 송축할지라 밤마다 내 양심이 나를 교훈하도다. 내가 여호와를 항상 내 앞에 모심이여 그가 나의 오른쪽에 계시므로 내가 흔들리지 아니하리로다."</p></blockquote>
-  <p>코람데오(coram Deo). 하나님 앞에 사는 삶. 이것이 로 임못의 비밀이었습니다. 항상 내 앞에 모심. 시편 15편의 흔들리지 않는 터전은 내 실력에서 오는 것이 아닙니다. 하나님을 내 앞에 두는 것에서 옵니다.</p>
-  <p>그런데 흔들림보다 더 근본적인 위협이 있습니다. 죽음입니다. v.10에 그 이름이 등장합니다.</p>
-  <blockquote><p>"이는 주께서 내 영혼을 스올에 버리지 아니하시며 주의 거룩한 자를 멸망시키지 않으실 것임이니이다."</p></blockquote>
-  <p><span class="heb">שְׁאוֹל</span>(쉬올, šĕʾôl). 스올. 죽음의 세계입니다. 모든 분깃이 사라지는 곳입니다. 헬레크를 빼앗기는 궁극의 장소입니다. 아무리 아름다운 잔도, 아무리 선한 구역도, 죽음 앞에서는 모두 끝나는 것 아닙니까. 그것이 현실 아닙니까.</p>
-  <p>왜 그런가. 스올은 단순한 장소가 아닙니다. 헬레크가 없는 상태 그 자체입니다. 하나님이 없는 자리, 분깃이 사라지는 자리, 모든 의미가 소멸하는 자리입니다. 그것이 스올입니다.</p>
-  <p>다윗은 이 위협 앞에서 선언합니다. "주께서 내 영혼을 스올에 버리지 아니하시며." 이것이 어떻게 가능합니까. 다윗이 죽지 않는다고 믿은 것입니까. 아닙니다. 그렇다면 무엇입니까.</p>
-  <p>사도행전 2장 25-31절로 가야 합니다. 오순절 날 베드로가 이 시편 16편을 인용합니다.</p>
-  <blockquote><p>"형제들아 내가 조상 다윗에 대하여 담대히 말할 수 있노니 다윗이 죽어 장사되어 그 묘가 오늘까지 우리 중에 있도다. 그는 선지자라 하나님이 맹세하사 그 자손 중에서 한 사람을 그 위에 앉게 하리라 하심을 알고 미리 보아 그리스도의 부활하심을 말하되 그가 스올에 버림이 되지 아니하며 그의 육신이 썩음을 당하지 아니하리라 하더니." (행 2:29-31)</p></blockquote>
-  <p>초대 교회와 개혁주의 주석가들은 여기서 날카로운 대비를 봅니다. 다윗은 죽었고 장사되었습니다. 그의 무덤이 오늘도 있습니다. 다윗의 살은 썩었습니다(행 2:29). 그러나 예수는 다르셨습니다. 스올을 통과하되 부패하지 않으셨습니다. 이 대비가 시편 16:10의 진정한 해석입니다. 다윗이 노래한 "거룩한 자"는 다윗 자신에 대한 노래가 될 수 없습니다. 그것이 베드로의 논증이었습니다. 다윗은 선지자였기에 오실 그분을 미리 보았습니다.</p>
-  <p>다윗은 예언자였습니다. 그는 자기 자신을 노래한 것이 아니었습니다. 자기 자손 중에서 나실 분, 그 메시아가 스올을 통과하고 부활하실 것을 미리 노래한 것입니다. 다윗의 헬레크 선언은 결국 예수 그리스도를 향한 노래였습니다.</p>
-  <p>그리고 v.11이 그 결말을 선언합니다.</p>
-  <blockquote><p>"주께서 생명의 길을 내게 보이시리니 주의 앞에는 충만한 기쁨이 있고 주의 오른쪽에는 영원한 즐거움이 있나이다."</p></blockquote>
-  <p>C.S. 루이스가 말했습니다.</p>
-  <blockquote><p>"우리는 더 큰 기쁨을 위해 창조되었는데 찰나의 즐거움에 만족하는 자는, 바닷가 휴가를 제안받고도 판자촌 흙장난을 고집하는 아이와 같다."</p></blockquote>
-  <p>주의 앞에 있는 충만한 기쁨과 영원한 즐거움을 외면한 채, 남의 잔과 내 잔을 비교하며 공허해하는 것은 얼마나 큰 손해입니까. 우리는 이보다 훨씬 더 큰 것을 위해 지음받았습니다.</p>
-
-  <hr>
-
-  <h2>복음 4단계</h2>
-  <h3>다 이루심</h3>
-  <p>예수님은 겟세마네 동산에서 기도하셨습니다. "아버지여 만일 할만하시거든 이 잔을 내게서 지나가게 하옵소서." 서론에서 보았던 그 잔이 여기서 다시 등장합니다. 예수님의 잔은 고난과 죽음의 잔이었습니다. 그러나 예수님은 그 잔을 마셨습니다. 스올을 통과하셨습니다. 그리고 부활하셨습니다. 다윗이 미리 노래한 그대로였습니다. 그분의 영혼이 스올에 버림받지 않았습니다. 죽음이 헬레크를 빼앗지 못했습니다.</p>
-  <h3>우리에게 주심</h3>
-  <p>예수님이 그 잔을 마셨기 때문에, 우리의 잔이 달라졌습니다. 그분이 우리의 헬레크가 되셨습니다. "주 밖에는 나의 복이 없다"는 선언이 이제 우리의 말이 될 수 있게 되었습니다. 이미 받은 것입니다. 그렇습니다.</p>
-  <h3>우리도 할 수 있음</h3>
-  <p>그래서 오늘 우리도 선언할 수 있습니다. 비교의 시대 한복판에서, 남의 잔이 더 커 보이는 이 아침에, 우리는 내 잔을 들고 말할 수 있습니다. "주는 나의 헬레크입니다. 주 밖에는 나의 복이 없습니다." 박탈의 고백이 아닙니다. 이미 받은 자의 선언입니다.</p>
-  <h3>주님께서 이루심</h3>
-  <p>그리고 그 선언의 결말은 우리가 만드는 것이 아닙니다. v.11이 약속합니다. "주께서 생명의 길을 내게 보이시리니." 보이시는 분은 주님이십니다. 이루시는 분도 주님이십니다.</p>
-
-  <hr>
-
-  <h2>결론: 그 잔을 들고 선언하십시오</h2>
-  <p>사랑하는 성도 여러분.</p>
-  <p>오늘 당신의 잔은 비어 있지 않습니다.</p>
-  <p>어쩌면 지금 여러분의 손에 들린 잔이 작아 보일 수 있습니다. 옆 사람의 잔이 더 풍성해 보일 수 있습니다. 그러나 그 잔 안에 야훼가 계십니다. 그 잔 안에 예수 그리스도의 부활이 담겨 있습니다. 그 잔의 소득은 영원한 즐거움입니다.</p>
-  <p>다윗은 미크탐의 두려움 속에서 새겼습니다. 그 두려움 한복판에서 선언했습니다. "여호와는 나의 헬레크입니다." 그 선언이 스올도 이겼습니다. 죽음도 그 분깃을 빼앗지 못했습니다.</p>
-  <p>이것이 역설입니다. 가장 적게 가진 자의 말처럼 들리는 그 선언이, 실은 가장 많이 받은 자의 고백입니다. 빈 잔처럼 보이는 그 잔 안에, 모든 것이 담겨 있습니다.</p>
-
-  <div class="heart-sentence">이미 여호와를 분깃으로 받은 자는,<br>빈 잔에서 충만을 선언한다.</div>
-
-  <p>이미 그렇습니다. 박탈이 아닙니다. 선언입니다. 오늘 이 아침, 그 잔을 들고 선언하십시오.</p>
-  <blockquote><p>"주는 나의 <span class="heb">חֵלֶק</span>(헬레크)입니다. 주 밖에는 나의 복이 없습니다."</p></blockquote>
-
-</div>
-</div>
-
-<footer>
-  수영로교회 평일새벽설교 | 이승목 목사 | 2026년 7월<br>
-  시편 14·15·16편 — "이미 받은 자" 시리즈
+<footer class="page-footer">
+  <p>수영로교회 34교구 평일새벽설교 · 시편 1-17편 · 2026년 7월</p>
+  <p style="margin-top:6px;">설교자: 이승목 목사 · 수동태 시편 시리즈</p>
 </footer>
-
-<script>
-function showTab(index) {
-  document.querySelectorAll('.tab-panel').forEach((p, i) => {
-    p.classList.toggle('active', i === index);
-  });
-  document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', i === index);
-  });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
 
 </body>
 </html>
