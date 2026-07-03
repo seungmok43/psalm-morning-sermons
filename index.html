@@ -2243,8 +2243,7 @@ function mdToHtml(md) {
   html = html.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, m => '<ul>' + m + '</ul>');
 
   // 나머지 줄을 p로 감싸기
-  const lines = html.split('
-');
+  const lines = html.split('\n');
   const result = [];
   let inBlock = false;
   for (const line of lines) {
