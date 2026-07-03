@@ -2237,14 +2237,10 @@ function mdToHtml(md) {
     // 순서없는 목록
     .replace(/^[-*] (.+)$/gm, '<li>$1</li>')
     // 빈줄 → 단락 구분
-    .replace(/
-{2,}/g, '
-
-');
+    .replace(/\n{2,}/g, '\n\n');
 
   // li 태그 묶기
-  html = html.replace(/(<li>.*<\/li>
-?)+/g, m => '<ul>' + m + '</ul>');
+  html = html.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, m => '<ul>' + m + '</ul>');
 
   // 나머지 줄을 p로 감싸기
   const lines = html.split('
