@@ -3,234 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>평일새벽설교 아카이브 | 이승목 목사 · 수영로교회 34교구</title>
+<title>이승목 목사 설교 아카이브 | 수영로교회 34교구</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #0d0d18;
-  --bg-card: #13132a;
-  --ink: #e8e6f2;
-  --accent: #7b68ee;
-  --gold: #c9a84c;
-  --muted: #8b89a8;
-  --rule: #252545;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0d14;--bg-card:#13142a;--ink:#e8e6f2;--accent:#7060d0;
+  --gold:#c09040;--muted:#8a88a8;--rule:#252545;
+  --font:'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+  --serif:Georgia,serif;
 }
-body {
-  font-family: 'Apple SD Gothic Neo','Malgun Gothic','Nanum Gothic',sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  min-height: 100vh;
-  line-height: 1.8;
-}
-
-.hero {
-  background: linear-gradient(160deg, #07071a 0%, #1a0a3a 45%, #2d1b69 75%, #0d0d18 100%);
-  text-align: center;
-  padding: 5rem 1.5rem 4rem;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid #252545;
-}
-.hero::before {
-  content: '說';
-  position: absolute;
-  font-size: 22rem;
-  opacity: .025;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  color: #a090ff;
-  font-family: serif;
-  pointer-events: none;
-}
-.hero-label {
-  font-size: .72rem;
-  letter-spacing: .35em;
-  color: #7b68ee;
-  opacity: .8;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -.02em;
-  background: linear-gradient(135deg, #c8b8ff, #8b7aee, #e8d8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: .8rem;
-}
-.hero-sub {
-  font-size: 1rem;
-  color: var(--muted);
-  margin-bottom: 2rem;
-}
-.hero-verse {
-  font-size: .92rem;
-  font-style: italic;
-  background: rgba(123,104,238,.12);
-  border: 1px solid rgba(123,104,238,.25);
-  border-radius: 10px;
-  padding: .9rem 1.8rem;
-  display: inline-block;
-  max-width: 500px;
-  color: #d0c8f0;
-}
-
-/* Series grid */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 3rem 1.2rem 5rem;
-}
-.section-title {
-  font-size: .68rem;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1.5rem;
-  padding-bottom: .5rem;
-  border-bottom: 1px solid var(--rule);
-}
-.series-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.2rem;
-}
-.series-card {
-  background: var(--bg-card);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 1.8rem 1.6rem;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: .2s;
-  position: relative;
-  overflow: hidden;
-}
-.series-card::before {
-  content: attr(data-symbol);
-  position: absolute;
-  font-size: 8rem;
-  opacity: .04;
-  bottom: -1rem;
-  right: .5rem;
-  font-family: serif;
-  pointer-events: none;
-}
-.series-card:hover {
-  border-color: #5a50cc;
-  box-shadow: 0 6px 30px rgba(123,104,238,.15);
-  transform: translateY(-2px);
-}
-.card-badge {
-  display: inline-block;
-  font-size: .65rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: .2rem .6rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-}
-.badge-complete { background: rgba(123,104,238,.2); color: #b0a0ff; border: 1px solid rgba(123,104,238,.3); }
-.badge-ongoing { background: rgba(201,168,76,.15); color: #d4b060; border: 1px solid rgba(201,168,76,.25); }
-
-.card-title {
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-bottom: .3rem;
-  letter-spacing: -.02em;
-}
-.card-subtitle {
-  font-size: .8rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-.card-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  font-size: .72rem;
-  color: #7070a0;
-}
-.card-meta span {
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--rule);
-  padding: .15rem .5rem;
-  border-radius: 4px;
-}
-
-.divider {
-  height: 1px;
-  background: var(--rule);
-  margin: 3rem 0;
-}
-
-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  color: #5a5880;
-  font-size: .76rem;
-  border-top: 1px solid var(--rule);
-}
-footer strong { color: #8888b0; }
-
-@media (max-width: 500px) {
-  .series-grid { grid-template-columns: 1fr; }
-  .hero { padding: 3.5rem 1rem 3rem; }
-}
+@media(prefers-color-scheme:light){:root{
+  --bg:#f4f4fa;--bg-card:#e8e8f4;--ink:#0c0d20;--accent:#4040c0;
+  --gold:#8a6010;--muted:#606080;--rule:#c0c0dc;
+}}
+:root[data-theme="dark"]{--bg:#0c0d14;--bg-card:#13142a;--ink:#e8e6f2;--accent:#7060d0;--gold:#c09040;--muted:#8a88a8;--rule:#252545}
+:root[data-theme="light"]{--bg:#f4f4fa;--bg-card:#e8e8f4;--ink:#0c0d20;--accent:#4040c0;--gold:#8a6010;--muted:#606080;--rule:#c0c0dc}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.8}
+.topbar{border-bottom:1px solid var(--rule);padding:.65rem 1.6rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.topbar-left{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap}
+.church{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.pastor{font-size:.86rem;font-weight:600;color:var(--muted)}
+.total-badge{font-size:.66rem;background:rgba(112,96,208,.15);border:1px solid rgba(112,96,208,.3);
+  color:var(--accent);padding:.15rem .55rem;border-radius:20px}
+.theme-btn{background:none;border:1px solid var(--rule);color:var(--muted);
+  cursor:pointer;padding:.28rem .6rem;border-radius:4px;font-size:.7rem;transition:.15s}
+.theme-btn:hover{color:var(--accent);border-color:var(--accent)}
+.hero{background:linear-gradient(155deg,#07080f 0%%,#160b30 45%%,#1a1060 70%%,#0c0d14 100%%);
+  text-align:center;padding:4.5rem 1.5rem 3.5rem;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--rule)}
+.hero::before{content:'書';position:absolute;font-size:22rem;opacity:.025;
+  top:50%%;left:50%%;transform:translate(-50%%,-50%%);color:var(--accent);
+  font-family:var(--serif);pointer-events:none}
+.hero-eye{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--accent);opacity:.75;margin-bottom:.9rem}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:400;
+  letter-spacing:-.015em;margin-bottom:.6rem;
+  background:linear-gradient(135deg,#c0b0ff,#8070e8,#e0d8ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:.92rem;color:var(--muted);margin-bottom:1.8rem}
+.total-display{display:inline-flex;align-items:baseline;gap:.4rem;
+  font-size:3rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.3rem}
+.total-display sub{font-size:.9rem;font-weight:400;color:var(--muted);margin-left:.3rem}
+.total-label{font-size:.75rem;color:var(--muted)}
+.container{max-width:960px;margin:0 auto;padding:2.5rem 1.2rem 5rem}
+.section-eye{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.3rem;padding-bottom:.45rem;border-bottom:1px solid var(--rule)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem;margin-bottom:3rem}
+.card{background:var(--bg-card);border:1px solid var(--rule);border-radius:12px;
+  padding:1.7rem 1.5rem;text-decoration:none;color:inherit;display:block;
+  transition:.2s;position:relative;overflow:hidden}
+.card::before{content:attr(data-sym);position:absolute;font-size:7rem;opacity:.04;
+  bottom:-1rem;right:.5rem;font-family:var(--serif);pointer-events:none}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(112,96,208,.15);
+  border-color:var(--accent)}
+.card-chip{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:.18rem .55rem;border-radius:20px;margin-bottom:.9rem}
+.chip-morning{background:rgba(192,120,64,.15);color:#c07840;border:1px solid rgba(192,120,64,.25)}
+.chip-sunday{background:rgba(90,120,208,.15);color:#6080d8;border:1px solid rgba(90,120,208,.25)}
+.chip-complete{background:rgba(80,180,80,.12);color:#50b050;border:1px solid rgba(80,180,80,.2)}
+.card-count{float:right;font-size:.65rem;color:var(--muted);
+  background:var(--bg);border:1px solid var(--rule);padding:.12rem .45rem;border-radius:20px}
+.card-title{font-family:var(--serif);font-size:1.25rem;font-weight:400;
+  margin-bottom:.35rem;letter-spacing:-.01em}
+.card-sub{font-size:.8rem;color:var(--muted);margin-bottom:.9rem;line-height:1.55}
+.card-meta{display:flex;flex-wrap:wrap;gap:.4rem;font-size:.68rem;color:var(--muted)}
+.card-meta span{background:rgba(255,255,255,.04);border:1px solid var(--rule);
+  padding:.1rem .42rem;border-radius:3px}
+footer{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.72rem;
+  border-top:1px solid var(--rule);line-height:1.9}
+footer strong{color:var(--ink)}
+@media(max-width:560px){.cards-grid{grid-template-columns:1fr}.hero{padding:3rem 1rem 2.5rem}}
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="church">수영로교회 34교구</span>
+    <span class="pastor">이승목 목사</span>
+    <span class="total-badge">✦ 282편</span>
+  </div>
+  <button class="theme-btn" onclick="toggleTheme()">☾ 테마</button>
+</div>
 
 <div class="hero">
-  <p class="hero-label">수영로교회 34교구 · 이승목 목사</p>
-  <h1>평일새벽설교 아카이브</h1>
-  <p class="hero-sub">새벽을 깨우며 — 주해와 시대 분석으로 풀어낸 성경 강해</p>
-  <p class="hero-verse">"주의 말씀은 내 발에 등이요 내 길에 빛이니이다" (시 119:105)</p>
+  <p class="hero-eye">설교 아카이브</p>
+  <h1>이승목 목사 설교 전집</h1>
+  <p class="hero-desc">평일새벽 · 주일설교 · 강해 시리즈 — 한 곳에서</p>
+  <div>
+    <div class="total-display">282<sub>편</sub></div>
+    <div class="total-label">평일새벽 223편 · 주일설교 59편</div>
+  </div>
 </div>
 
 <div class="container">
-  <p class="section-title">설교 시리즈 전체</p>
-  <div class="series-grid">
 
-    <a href="revelation-series.html" class="series-card" data-symbol="啟">
-      <span class="card-badge badge-complete">완결 · 38편</span>
-      <h2 class="card-title">이기는 자에게</h2>
-      <p class="card-subtitle">요한계시록 새벽설교 1–22장 완결</p>
+  <p class="section-eye">평일 새벽설교</p>
+  <div class="cards-grid">
+
+    <a href="psalm-series.html" class="card" data-sym="情">
+      <span class="card-chip chip-morning">평일새벽</span>
+      <span class="card-count">150편</span>
+      <div class="card-title">감정에 이름을</div>
+      <div class="card-sub">시편 1–150편 전권을 감정의 언어로 읽는 새벽설교 완결 시리즈.</div>
       <div class="card-meta">
-        <span>계시록 전권</span>
-        <span>AD 95 도미티아누스</span>
-        <span>Osborne · Bauckham</span>
-        <span>2027.03–05</span>
+        <span>시편 전권</span><span>150편 완결</span><span>2026.07–2027.01</span>
       </div>
     </a>
 
-    <a href="ecclesiastes-series.html" class="series-card" data-symbol="傳">
-      <span class="card-badge badge-complete">완결 · 35편</span>
-      <h2 class="card-title">꼰대의 가르침</h2>
-      <p class="card-subtitle">전도서 새벽설교 완결 시리즈</p>
+    <a href="ecclesiastes-series.html" class="card" data-sym="傳">
+      <span class="card-chip chip-morning">평일새벽</span>
+      <span class="card-count">35편</span>
+      <div class="card-title">꼰대의 가르침</div>
+      <div class="card-sub">전도서 1–12장 전권 — 헬레니즘 시대 배경과 Qohelet 주해.</div>
       <div class="card-meta">
-        <span>전도서 전권</span>
-        <span>헬레니즘 시대 배경</span>
-        <span>Ogden · Longman</span>
+        <span>전도서 전권</span><span>35편 완결</span>
+      </div>
+    </a>
+
+    <a href="revelation-series.html" class="card" data-sym="啟">
+      <span class="card-chip chip-morning">평일새벽</span>
+      <span class="card-count">38편</span>
+      <div class="card-title">이기는 자에게</div>
+      <div class="card-sub">요한계시록 1–22장 — AD 95년 도미티아누스 황제 시대 배경.</div>
+      <div class="card-meta">
+        <span>계시록 전권</span><span>38편 완결</span><span>Osborne·Bauckham</span>
       </div>
     </a>
 
   </div>
 
-  <div class="divider"></div>
-  <p style="text-align:center; color: var(--muted); font-size: .82rem;">
-    이 설교문들은 교육·예배 목적으로 자유롭게 활용하실 수 있습니다.
-  </p>
+  <p class="section-eye">주일설교 시리즈</p>
+  <div class="cards-grid">
+    <a href="sunday-sermons.html" class="card" data-sym="主">
+      <span class="card-chip chip-sunday">주일설교</span>
+      <span class="card-count">59편</span>
+      <div class="card-title">주일설교 시리즈 전집</div>
+      <div class="card-sub">복·산상수훈·세계관·정체성·주기도문·칠죄종·나는이다·이 시대가 파는 구원·단편 — 10개 시리즈 완전 아카이브.</div>
+      <div class="card-meta">
+        <span>10개 시리즈</span><span>59편</span><span>2025–2026</span>
+      </div>
+    </a>
+  </div>
+
 </div>
 
 <footer>
-  <strong>이승목 목사</strong> · 수영로교회 34교구 평일새벽설교 아카이브<br>
-  수영로교회 34교구 | 부산광역시 수영구
+  <strong>이승목 목사</strong> · 수영로교회 34교구<br>
+  설교 아카이브 — 평일새벽 223편 · 주일설교 59편 · 총 282편<br>
+  <span style="opacity:.5;font-size:.65rem">이 설교문은 교육·예배 목적으로 자유롭게 활용하실 수 있습니다</span>
 </footer>
 
+<script>
+function toggleTheme(){
+  const r=document.documentElement,cur=r.dataset.theme;
+  if(cur==='light')r.dataset.theme='dark';
+  else if(cur==='dark')r.dataset.theme='light';
+  else{const sys=window.matchMedia('(prefers-color-scheme:dark)').matches;
+    r.dataset.theme=sys?'light':'dark';}
+}
+</script>
 </body>
 </html>
